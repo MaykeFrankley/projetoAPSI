@@ -8,7 +8,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.ToggleGroup?>
-<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -23,9 +22,6 @@
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <VBox alignment="CENTER" fillWidth="false" layoutX="74.0" layoutY="5.0" prefHeight="665.0" prefWidth="1280.0" spacing="15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <effect>
-                              <DropShadow />
-                           </effect>
                            <padding>
                               <Insets left="40.0" />
                            </padding>
@@ -39,7 +35,7 @@
                                                 <Font size="18.0" />
                                              </font>
                                           </Label>
-                                          <JFXToggleButton selected="true" textFill="#ffff8d" toggleColor="#379a52" unToggleColor="RED">
+                                          <JFXToggleButton selected="true" toggleColor="#379a52" unToggleColor="RED">
                                              <font>
                                                 <Font size="16.0" />
                                              </font>
@@ -47,7 +43,7 @@
                                                 <ToggleGroup fx:id="gp1" />
                                              </toggleGroup>
                                           </JFXToggleButton>
-                                          <JFXToggleButton textFill="#ffff8d" toggleColor="#379a52" toggleGroup="$gp1" unToggleColor="RED">
+                                          <JFXToggleButton toggleColor="#379a52" toggleGroup="$gp1" unToggleColor="RED">
                                              <font>
                                                 <Font size="16.0" />
                                              </font>
@@ -61,7 +57,7 @@
                                                 <Font size="18.0" />
                                              </font>
                                           </Label>
-                                          <JFXToggleButton selected="true" text="ToggleButton" textFill="#ffff8d" toggleColor="#379a52" unToggleColor="RED">
+                                          <JFXToggleButton selected="true" text="ToggleButton" toggleColor="#379a52" unToggleColor="RED">
                                              <font>
                                                 <Font size="16.0" />
                                              </font>
