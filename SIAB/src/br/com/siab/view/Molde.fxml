@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXToggleButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: transparent;" stylesheets="@../css/lighttheme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.Acad.controller.SettingsController">
+   <children>
+      <JFXTabPane fx:id="tabPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <tabs>
+            <Tab closable="false" text="Nome da aba">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <VBox alignment="CENTER" fillWidth="false" layoutX="74.0" layoutY="5.0" prefHeight="665.0" prefWidth="1280.0" spacing="15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                           <padding>
+                              <Insets left="40.0" />
+                           </padding>
+                           <children>
+                              <HBox>
+                                 <children>
+                                    <VBox alignment="TOP_CENTER" prefHeight="147.0" prefWidth="537.0">
+                                       <children>
+                                          <Label text="Sempre use vbox ou hbox pra organizar os componentes" textFill="#ffff8d">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <JFXToggleButton selected="true" textFill="#ffff8d" toggleColor="#379a52" unToggleColor="RED">
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                             <toggleGroup>
+                                                <ToggleGroup fx:id="gp1" />
+                                             </toggleGroup>
+                                          </JFXToggleButton>
+                                          <JFXToggleButton textFill="#ffff8d" toggleColor="#379a52" toggleGroup="$gp1" unToggleColor="RED">
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                          </JFXToggleButton>
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="TOP_CENTER" prefHeight="147.0" prefWidth="672.0">
+                                       <children>
+                                          <Label text="Para criar uma aba, basta arrastar um componente &quot;Tab&quot; para o JFXTabPane " textFill="#ffff8d">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <JFXToggleButton selected="true" text="ToggleButton" textFill="#ffff8d" toggleColor="#379a52" unToggleColor="RED">
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                             <VBox.margin>
+                                                <Insets />
+                                             </VBox.margin>
+                                          </JFXToggleButton>
+                                          <JFXTextField focusColor="#2b4db2" labelFloat="true" maxWidth="452.0" minWidth="452.0" prefHeight="43.0" prefWidth="452.0" promptText="TextField" unFocusColor="#ff0505" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <VBox alignment="TOP_CENTER">
+                                 <children>
+                                    <Label prefHeight="81.0" prefWidth="814.0" text="Você pode criar uma tela que funciona como uma instalação do windows. EX: Uma parte de cadastro, você pode separar por abas, e depois ir clickando em &quot;Próximo&quot; para preencher outras partes do cadastro. Toda vez que clickar em &quot;Próximo&quot; ele vai para outra aba." textFill="#ffff8d" wrapText="true">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <JFXButton buttonType="RAISED" ripplerFill="RED">
+                                       <VBox.margin>
+                                          <Insets top="25.0" />
+                                       </VBox.margin>
+                                    </JFXButton>
+                                    <Label prefHeight="123.0" prefWidth="800.0" text="Todo o conteúdo dessa tela irá pertecer à apenas um controller. Você também pode varias coisas dentro de um único Tab colocando o AnchorPane do Tab dentro de um ScrollPane, clickando com o Direito no AnchorPane e depois &quot;Wrap in&quot; depois ScrollPane. Buga no começo, mas é só ajustar o tamanho do scrollPane" textFill="#ffff8d" wrapText="true">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <HBox alignment="BOTTOM_CENTER" prefHeight="147.0" prefWidth="731.0" spacing="40.0">
+                                       <children>
+                                          <JFXButton prefHeight="34.0" prefWidth="122.0" style="-fx-font-size: 14px;" />
+                                          <JFXButton prefHeight="34.0" prefWidth="205.0" style="-fx-font-size: 14px;" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+         </tabs>
+      </JFXTabPane>
+   </children>
+</AnchorPane>
