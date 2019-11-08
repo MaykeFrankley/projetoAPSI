@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: white;" stylesheets="@../css/lighttheme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.siab.controller.CadastroFichaAController">
+   <children>
+      <JFXTabPane fx:id="tabPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <tabs>
+            <Tab closable="false" text="Dados de localização">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <VBox alignment="TOP_CENTER" fillWidth="false" layoutX="74.0" layoutY="5.0" prefHeight="665.0" prefWidth="1280.0" spacing="15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <padding>
+                              <Insets left="40.0" top="40.0" />
+                           </padding>
+                           <children>
+                              <HBox style="-fx-border-color: gray;">
+                                 <children>
+                                    <VBox fillWidth="false" prefHeight="147.0" prefWidth="443.0" spacing="25.0">
+                                       <children>
+                                          <JFXTextField focusColor="BLACK" labelFloat="true" maxWidth="432.0" minWidth="91.0" prefHeight="43.0" prefWidth="410.0" promptText="Endereço" unFocusColor="#4059a9" />
+                                          <JFXTextField focusColor="BLACK" labelFloat="true" maxWidth="432.0" minWidth="0.0" prefHeight="43.0" prefWidth="149.0" promptText="Número" unFocusColor="#4059a9" />
+                                       </children>
+                                    </VBox>
+                                    <VBox fillWidth="false" prefHeight="147.0" prefWidth="672.0" spacing="25.0">
+                                       <children>
+                                          <JFXTextField focusColor="BLACK" labelFloat="true" maxWidth="432.0" minWidth="91.0" prefHeight="43.0" prefWidth="410.0" promptText="Bairro" unFocusColor="#4059a9" />
+                                          <JFXTextField focusColor="BLACK" labelFloat="true" maxWidth="432.0" minWidth="0.0" prefHeight="43.0" prefWidth="146.0" promptText="CEP" unFocusColor="#4059a9" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <HBox fillHeight="false" prefHeight="228.0" prefWidth="1119.0" style="-fx-border-color: gray;">
+                                 <children>
+                                    <VBox fillWidth="false" prefHeight="228.0" prefWidth="448.0" spacing="25.0">
+                                       <children>
+                                          <ComboBox prefHeight="41.0" prefWidth="187.0" promptText="UF">
+                                             <VBox.margin>
+                                                <Insets left="10.0" />
+                                             </VBox.margin>
+                                          </ComboBox>
+                                          <ComboBox prefHeight="41.0" prefWidth="187.0" promptText="Município">
+                                             <VBox.margin>
+                                                <Insets left="10.0" />
+                                             </VBox.margin>
+                                          </ComboBox>
+                                          <JFXTextField focusColor="BLACK" labelFloat="true" maxWidth="432.0" minWidth="91.0" prefHeight="43.0" prefWidth="106.0" promptText="Segmento" unFocusColor="#4059a9" />
+                                       </children>
+                                    </VBox>
+                                    <VBox fillWidth="false" prefHeight="228.0" prefWidth="317.0" spacing="25.0">
+                                       <children>
+                                          <JFXTextField focusColor="BLACK" labelFloat="true" maxWidth="432.0" minWidth="91.0" prefHeight="43.0" prefWidth="106.0" promptText="Área" unFocusColor="#4059a9" />
+                                          <JFXTextField focusColor="BLACK" labelFloat="true" maxWidth="432.0" minWidth="0.0" prefHeight="43.0" prefWidth="102.0" promptText="MicroÁrea" unFocusColor="#4059a9" />
+                                          <JFXTextField focusColor="BLACK" labelFloat="true" maxWidth="432.0" minWidth="0.0" prefHeight="43.0" prefWidth="102.0" promptText="Família" unFocusColor="#4059a9" />
+                                       </children>
+                                    </VBox>
+                                    <JFXDatePicker defaultColor="#4059a9" promptText="Data" />
+                                 </children>
+                              </HBox>
+                              <Button mnemonicParsing="false" text="Próximo">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </Button>
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab closable="false" text="Cadastro de membros">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <VBox alignment="TOP_CENTER" fillWidth="false" layoutX="74.0" layoutY="5.0" prefHeight="665.0" prefWidth="1280.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <padding>
+                              <Insets left="40.0" top="40.0" />
+                           </padding>
+                           <children>
+                              <HBox prefHeight="235.0" prefWidth="763.0" spacing="20.0" style="-fx-border-color: gray;">
+                                 <children>
+                                    <VBox fillWidth="false" prefHeight="211.0" prefWidth="420.0" spacing="20.0">
+                                       <children>
+                                          <JFXTextField focusColor="BLACK" labelFloat="true" maxWidth="441.0" minWidth="91.0" prefHeight="43.0" prefWidth="441.0" promptText="Nome" unFocusColor="#4059a9" />
+                                          <JFXDatePicker prefHeight="78.0" prefWidth="284.0" promptText="Data de nascimento" />
+                                          <JFXTextField focusColor="BLACK" labelFloat="true" maxWidth="432.0" minWidth="91.0" prefHeight="43.0" prefWidth="158.0" promptText="Idade" unFocusColor="#4059a9" />
+                                          <JFXTextField focusColor="BLACK" labelFloat="true" maxWidth="432.0" minWidth="91.0" prefHeight="43.0" prefWidth="278.0" promptText="Ocupação" unFocusColor="#4059a9" />
+                                       </children>
+                                    </VBox>
+                                    <VBox fillWidth="false" spacing="20.0">
+                                       <children>
+                                          <ComboBox prefHeight="41.0" prefWidth="246.0" promptText="Sexo">
+                                             <VBox.margin>
+                                                <Insets top="-5.0" />
+                                             </VBox.margin>
+                                          </ComboBox>
+                                          <JFXCheckBox prefHeight="25.0" prefWidth="201.0" text="Frequenta escola?">
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                          </JFXCheckBox>
+                                          <JFXCheckBox prefHeight="25.0" prefWidth="201.0" text="Alfabetizado?">
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                          </JFXCheckBox>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" fillHeight="false" prefHeight="125.0" prefWidth="765.0" spacing="20.0" style="-fx-border-color: gray;">
+                                 <children>
+                                    <ComboBox prefHeight="41.0" prefWidth="239.0" promptText="Doença ou condição">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </ComboBox>
+                                    <VBox spacing="10.0">
+                                       <children>
+                                          <Button contentDisplay="RIGHT" mnemonicParsing="false" prefHeight="25.0" prefWidth="88.0" style="-fx-font-size: 10px;" text="Adicionar">
+                                             <graphic>
+                                                <FontAwesomeIconView glyphName="ARROW_RIGHT" />
+                                             </graphic>
+                                          </Button>
+                                          <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="88.0" style="-fx-font-size: 10px;" text="Remover">
+                                             <graphic>
+                                                <FontAwesomeIconView glyphName="ARROW_LEFT" />
+                                             </graphic>
+                                          </Button>
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="CENTER" fillWidth="false" prefHeight="102.0" prefWidth="376.0">
+                                       <children>
+                                          <Label text="Doenças ou condição referidas">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <JFXListView prefHeight="82.0" prefWidth="391.0" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <VBox>
+                                 <children>
+                                    <TableView editable="true" prefHeight="189.0" prefWidth="1182.0" tableMenuButtonVisible="true">
+                                      <columns>
+                                        <TableColumn prefWidth="94.0" text="ID Família" />
+                                        <TableColumn prefWidth="315.0" text="Nome" />
+                                          <TableColumn prefWidth="192.0" text="Data de nascimento" />
+                                          <TableColumn prefWidth="75.0" text="Idade" />
+                                          <TableColumn prefWidth="131.0" text="Sexo" />
+                                          <TableColumn prefWidth="176.0" text="Situação escolar" />
+                                          <TableColumn prefWidth="176.0" text="Ocupação" />
+                                      </columns>
+                                    </TableView>
+                                 </children>
+                              </VBox>
+                              <HBox fillHeight="false" spacing="40.0">
+                                 <children>
+                                    <Button mnemonicParsing="false" text="Cadastrar membro" />
+                                    <Button mnemonicParsing="false" text="Próximo" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab closable="false" text="Situação de moradia e saneamento">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <VBox alignment="CENTER" fillWidth="false" layoutX="74.0" layoutY="5.0" prefHeight="665.0" prefWidth="1280.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <padding>
+                              <Insets left="40.0" top="40.0" />
+                           </padding>
+                           <children>
+                              <HBox prefHeight="293.0" prefWidth="1198.0" spacing="20.0" style="-fx-border-color: gray;">
+                                 <children>
+                                    <VBox fillWidth="false" prefHeight="293.0" prefWidth="488.0" spacing="25.0">
+                                       <children>
+                                          <Label text="Tipo de casa">
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <HBox>
+                                             <children>
+                                                <ComboBox prefHeight="41.0" prefWidth="203.0">
+                                                   <HBox.margin>
+                                                      <Insets top="-5.0" />
+                                                   </HBox.margin>
+                                                </ComboBox>
+                                                <JFXTextField focusColor="BLACK" labelFloat="true" maxWidth="432.0" minWidth="91.0" prefHeight="43.0" prefWidth="182.0" promptText="Outro" unFocusColor="#4059a9" />
+                                             </children>
+                                          </HBox>
+                                          <JFXTextField focusColor="BLACK" labelFloat="true" maxWidth="441.0" minWidth="87.0" prefHeight="43.0" prefWidth="87.0" promptText="Número de cômodos" unFocusColor="#4059a9" />
+                                          <JFXCheckBox text="Energia elétrica">
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                          </JFXCheckBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox fillWidth="false" prefHeight="235.0" prefWidth="400.0" spacing="25.0">
+                                       <children>
+                                          <Label text="Destino do lixo">
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <HBox>
+                                             <children>
+                                                <ComboBox prefHeight="41.0" prefWidth="203.0">
+                                                   <HBox.margin>
+                                                      <Insets top="-5.0" />
+                                                   </HBox.margin>
+                                                </ComboBox>
+                                             </children>
+                                          </HBox>
+                                          <Label text="Tratamento da água no domicílio">
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <ComboBox prefHeight="41.0" prefWidth="203.0" />
+                                       </children>
+                                    </VBox>
+                                    <VBox fillWidth="false" prefHeight="235.0" prefWidth="400.0" spacing="25.0">
+                                       <children>
+                                          <Label text="Abastecimento de água">
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <ComboBox prefHeight="41.0" prefWidth="203.0" />
+                                          <Label text="Destino de fezes e urina">
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <HBox>
+                                             <children>
+                                                <ComboBox prefHeight="41.0" prefWidth="203.0">
+                                                   <HBox.margin>
+                                                      <Insets top="-5.0" />
+                                                   </HBox.margin>
+                                                </ComboBox>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <Button mnemonicParsing="false" text="Próximo" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab closable="false" text="Outras informações">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <VBox alignment="CENTER" fillWidth="false" layoutX="74.0" layoutY="5.0" prefHeight="665.0" prefWidth="1280.0" spacing="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <padding>
+                              <Insets left="40.0" top="40.0" />
+                           </padding>
+                           <children>
+                              <VBox fillWidth="false" prefHeight="194.0" prefWidth="1199.0" spacing="20.0" style="-fx-border-color: gray;">
+                                 <children>
+                                    <Label text="Alguem da família possui Plano de Saúde?">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <HBox />
+                                    <JFXTextField focusColor="BLACK" labelFloat="true" maxWidth="432.0" minWidth="91.0" prefHeight="43.0" prefWidth="324.0" promptText="Nome do Plano de Saúde" unFocusColor="#4059a9" />
+                                    <JFXTextField focusColor="BLACK" labelFloat="true" maxWidth="432.0" minWidth="77.0" prefHeight="43.0" prefWidth="77.0" promptText="Número de pessoas cobertas pelo Plano de saúde" unFocusColor="#4059a9" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="-40.0" />
+                                 </VBox.margin>
+                              </VBox>
+                              <HBox prefHeight="222.0" prefWidth="1198.0" spacing="20.0" style="-fx-border-color: gray;">
+                                 <children>
+                                    <VBox fillWidth="false" prefHeight="218.0" prefWidth="400.0" spacing="20.0">
+                                       <children>
+                                          <Label text="Em caso de doenças procura...">
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <HBox />
+                                          <ComboBox prefHeight="41.0" prefWidth="253.0">
+                                             <VBox.margin>
+                                                <Insets top="-20.0" />
+                                             </VBox.margin>
+                                          </ComboBox>
+                                          <Label text="Meios de comunicação que mais utiliza">
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <HBox>
+                                             <VBox.margin>
+                                                <Insets top="-20.0" />
+                                             </VBox.margin>
+                                             <children>
+                                                <ComboBox prefHeight="41.0" prefWidth="253.0" />
+                                                <JFXTextField focusColor="BLACK" labelFloat="true" maxWidth="432.0" minWidth="91.0" prefHeight="43.0" prefWidth="247.0" promptText="Outros" unFocusColor="#4059a9">
+                                                   <HBox.margin>
+                                                      <Insets top="5.0" />
+                                                   </HBox.margin>
+                                                </JFXTextField>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox fillWidth="false" prefHeight="197.0" prefWidth="400.0" spacing="20.0">
+                                       <children>
+                                          <Label text="Participa de grupos comunitários">
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <HBox>
+                                             <VBox.margin>
+                                                <Insets top="-20.0" />
+                                             </VBox.margin>
+                                             <children>
+                                                <ComboBox prefHeight="41.0" prefWidth="253.0" />
+                                                <JFXTextField focusColor="BLACK" labelFloat="true" maxWidth="432.0" minWidth="91.0" prefHeight="43.0" prefWidth="247.0" promptText="Outros" unFocusColor="#4059a9">
+                                                   <HBox.margin>
+                                                      <Insets top="5.0" />
+                                                   </HBox.margin>
+                                                </JFXTextField>
+                                             </children>
+                                          </HBox>
+                                          <HBox />
+                                          <Label text="Meios de transporte que mais utiliza">
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <HBox>
+                                             <children>
+                                                <ComboBox prefHeight="41.0" prefWidth="253.0" />
+                                                <JFXTextField focusColor="BLACK" labelFloat="true" maxWidth="432.0" minWidth="91.0" prefHeight="43.0" prefWidth="247.0" promptText="Outros" unFocusColor="#4059a9">
+                                                   <HBox.margin>
+                                                      <Insets top="5.0" />
+                                                   </HBox.margin>
+                                                </JFXTextField>
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets top="-20.0" />
+                                             </VBox.margin>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <Button mnemonicParsing="false" text="Próximo" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+         </tabs>
+      </JFXTabPane>
+   </children>
+</AnchorPane>
