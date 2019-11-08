@@ -22,6 +22,11 @@
                         <FontAwesomeIconView fill="WHITE" glyphName="COFFEE" size="16" />
                      </graphic>
                   </JFXButton>
+                  <JFXButton alignment="TOP_LEFT" onAction="#cadastrar_fichaA" prefHeight="31.0" prefWidth="197.0" style="-fx-font-size: 15px;" styleClass="options-btn" text="Cadastro da Ficha A">
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="LIST" size="16" />
+                     </graphic>
+                  </JFXButton>
                </children>
             </VBox>
             <VBox fx:id="box_buttons" alignment="TOP_CENTER" fillWidth="false" prefHeight="695.0" prefWidth="280.0" spacing="15.0">

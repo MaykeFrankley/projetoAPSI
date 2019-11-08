@@ -51,7 +51,13 @@ public class DrawerController {
     @FXML
     void cadastrar_usuario(ActionEvent event) throws IOException {
     	Scene scene = (Scene) ((Node) event.getSource()).getScene();
-		Util.LoadWindow(getClass().getResource("/br/com/Acad/view/Arquivo.fxml"), scene, "x");
+		Util.LoadWindow(getClass().getResource("/br/com/siab/view/Arquivo.fxml"), scene, "x");
+    }
+
+    @FXML
+    void cadastrar_fichaA(ActionEvent event) throws IOException {
+    	Scene scene = (Scene) ((Node) event.getSource()).getScene();
+		Util.LoadWindow(getClass().getResource("/br/com/siab/view/CadastroFichaA.fxml"), scene, "y");
     }
 
     @FXML

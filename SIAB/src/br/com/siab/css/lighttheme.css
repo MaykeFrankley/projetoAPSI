@@ -51,7 +51,7 @@
 }
 
 .button:pressed{
-	-fx-padding: 10,15,10,15;
+	-fx-padding: 15;
 	-fx-background-insets: 2 0 0 0, 2 0 3 0, 2 0 4 0, 2 0 5 0;
 }
 
@@ -101,6 +101,12 @@
     -fx-background-color: #FFFFFF;
     -fx-pref-width: 200;
     -fx-pref-height: 50;
+    -fx-border-color: #2A2E37;
+    -fx-border-radius: 0px;
+}
+
+.tab:selected{
+	-fx-background-color: derive(#2A2E37, 100%);
 }
 
 .tab-header-background{
@@ -108,10 +114,11 @@
 }
 
 .tab-label{
+	-fx-alignment: CENTER;
+	-fx-wrap-text: true;
     -fx-text-fill: #2A2E37;
-    -fx-font-size: 12pt;
+    -fx-font-size: 9pt;
 }
-
 
 .tab-main{
     -fx-pref-height : 60;
