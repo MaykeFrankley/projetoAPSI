@@ -2,6 +2,9 @@ package br.com.siab.app;
 
 import java.util.TimeZone;
 
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
@@ -17,6 +20,7 @@ import javafx.stage.WindowEvent;
 public class Main extends Application{
 
 	public static Stage stage;
+	public static EntityManagerFactory factory;
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -50,6 +54,8 @@ public class Main extends Application{
 
 			}
 		});
+
+		factory = Persistence.createEntityManagerFactory("SIAB");
 
 	}
 
