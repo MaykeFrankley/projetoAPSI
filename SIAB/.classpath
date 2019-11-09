@@ -7,5 +7,25 @@
 	<classpathentry kind="lib" path="Libs/fontawesomefx-8.9.jar"/>
 	<classpathentry kind="lib" path="Libs/org.eclipse.fx.ide.css.jfx8_2.4.0.201605112122.jar"/>
 	<classpathentry kind="lib" path="Libs/jfoenix.jar"/>
+	<classpathentry kind="lib" path="Libs/antlr-2.7.6.jar"/>
+	<classpathentry kind="lib" path="Libs/c3p0-0.9.1.2.jar"/>
+	<classpathentry kind="lib" path="Libs/cglib-nodep-2.1_3.jar"/>
+	<classpathentry kind="lib" path="Libs/commons-codec-1.11.jar"/>
+	<classpathentry kind="lib" path="Libs/commons-collections-2.1.1.jar"/>
+	<classpathentry kind="lib" path="Libs/commons-logging-1.0.4.jar"/>
+	<classpathentry kind="lib" path="Libs/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="Libs/ejb3-persistence-1.0.2.GA.jar"/>
+	<classpathentry kind="lib" path="Libs/hibernate-annotations.jar"/>
+	<classpathentry kind="lib" path="Libs/hibernate-commons-annotations.jar"/>
+	<classpathentry kind="lib" path="Libs/hibernate-entitymanager.jar"/>
+	<classpathentry kind="lib" path="Libs/hibernate-validator.jar"/>
+	<classpathentry kind="lib" path="Libs/hibernate3.jar"/>
+	<classpathentry kind="lib" path="Libs/javassist-3.18.0-ga.jar"/>
+	<classpathentry kind="lib" path="Libs/javassist.jar"/>
+	<classpathentry kind="lib" path="Libs/jboss-archive-browsing.jar"/>
+	<classpathentry kind="lib" path="Libs/jta.jar"/>
+	<classpathentry kind="lib" path="Libs/log4j-1.2.11.jar"/>
+	<classpathentry kind="lib" path="Libs/mysql-connector-java-8.0.16.jar"/>
+	<classpathentry kind="lib" path="Libs/xstream-1.4.10.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
