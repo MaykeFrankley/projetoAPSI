@@ -5,6 +5,7 @@
 <?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXListView?>
 <?import com.jfoenix.controls.JFXTabPane?>
+<?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
@@ -20,6 +21,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import org.controlsfx.control.CheckComboBox?>
 
 <AnchorPane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: white;" stylesheets="@../css/lighttheme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.siab.controller.CadastroFichaAController">
    <children>
@@ -256,7 +258,7 @@
                               <HBox fillHeight="false" spacing="40.0">
                                  <children>
                                     <Button fx:id="btn_cadastrarMembro" mnemonicParsing="false" onAction="#cadastrarMembro" text="Cadastrar membro" />
-                                    <Button mnemonicParsing="false" text="Próximo" />
+                                    <Button mnemonicParsing="false" onAction="#proximo2" text="Próximo" />
                                     <Button mnemonicParsing="false" onAction="#limparSelecao" text="Limpar seleção" />
                                  </children>
                               </HBox>
@@ -266,7 +268,7 @@
                   </AnchorPane>
                </content>
             </Tab>
-            <Tab closable="false" disable="true" text="Situação de moradia e saneamento">
+            <Tab fx:id="tab_situacao" closable="false" disable="true" text="Situação de moradia e saneamento">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -286,16 +288,16 @@
                                           </Label>
                                           <HBox>
                                              <children>
-                                                <ComboBox prefHeight="41.0" prefWidth="203.0">
+                                                <ComboBox fx:id="box_tipoCasa" prefHeight="41.0" prefWidth="203.0">
                                                    <HBox.margin>
                                                       <Insets top="-5.0" />
                                                    </HBox.margin>
                                                 </ComboBox>
-                                                <JFXTextField focusColor="BLACK" labelFloat="true" maxWidth="432.0" minWidth="91.0" prefHeight="43.0" prefWidth="182.0" promptText="Outro" unFocusColor="#4059a9" />
+                                                <JFXTextField fx:id="outro_tipoCasa" focusColor="BLACK" labelFloat="true" maxWidth="432.0" minWidth="91.0" onKeyReleased="#clearTipoCasa" prefHeight="43.0" prefWidth="182.0" promptText="Outro" unFocusColor="#4059a9" />
                                              </children>
                                           </HBox>
-                                          <JFXTextField focusColor="BLACK" labelFloat="true" maxWidth="441.0" minWidth="87.0" prefHeight="43.0" prefWidth="87.0" promptText="Número de cômodos" unFocusColor="#4059a9" />
-                                          <JFXCheckBox text="Energia elétrica">
+                                          <JFXTextField fx:id="numeComodos" focusColor="BLACK" labelFloat="true" maxWidth="441.0" minWidth="87.0" prefHeight="43.0" prefWidth="87.0" promptText="Número de cômodos" unFocusColor="#4059a9" />
+                                          <JFXCheckBox fx:id="energiaEletrica" text="Energia elétrica">
                                              <font>
                                                 <Font size="16.0" />
                                              </font>
@@ -311,7 +313,7 @@
                                           </Label>
                                           <HBox>
                                              <children>
-                                                <ComboBox prefHeight="41.0" prefWidth="203.0">
+                                                <ComboBox fx:id="box_destinoLixo" prefHeight="41.0" prefWidth="203.0">
                                                    <HBox.margin>
                                                       <Insets top="-5.0" />
                                                    </HBox.margin>
@@ -323,7 +325,7 @@
                                                 <Font size="16.0" />
                                              </font>
                                           </Label>
-                                          <ComboBox prefHeight="41.0" prefWidth="203.0" />
+                                          <ComboBox fx:id="box_tratamentoAgua" prefHeight="41.0" prefWidth="203.0" />
                                        </children>
                                     </VBox>
                                     <VBox fillWidth="false" prefHeight="235.0" prefWidth="400.0" spacing="25.0">
@@ -333,7 +335,7 @@
                                                 <Font size="16.0" />
                                              </font>
                                           </Label>
-                                          <ComboBox prefHeight="41.0" prefWidth="203.0" />
+                                          <ComboBox fx:id="box_abastecimentoAgua" prefHeight="41.0" prefWidth="203.0" />
                                           <Label text="Destino de fezes e urina">
                                              <font>
                                                 <Font size="16.0" />
@@ -341,7 +343,7 @@
                                           </Label>
                                           <HBox>
                                              <children>
-                                                <ComboBox prefHeight="41.0" prefWidth="203.0">
+                                                <ComboBox fx:id="box_destinoFezes" prefHeight="41.0" prefWidth="203.0">
                                                    <HBox.margin>
                                                       <Insets top="-5.0" />
                                                    </HBox.margin>
@@ -352,18 +354,22 @@
                                     </VBox>
                                  </children>
                               </HBox>
-                              <Button mnemonicParsing="false" text="Próximo" />
+                              <HBox fillHeight="false">
+                                 <children>
+                                    <Button mnemonicParsing="false" onAction="#proximo3" text="Próximo" />
+                                 </children>
+                              </HBox>
                            </children>
                         </VBox>
                      </children>
                   </AnchorPane>
                </content>
             </Tab>
-            <Tab closable="false" disable="true" text="Outras informações">
+            <Tab fx:id="tab_outros" closable="false" disable="true" text="Outras informações">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <VBox alignment="CENTER" fillWidth="false" layoutX="74.0" layoutY="5.0" prefHeight="665.0" prefWidth="1280.0" spacing="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <VBox alignment="CENTER" fillWidth="false" layoutX="74.0" layoutY="5.0" prefHeight="665.0" prefWidth="1280.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <padding>
                               <Insets left="40.0" top="40.0" />
                            </padding>
@@ -375,9 +381,9 @@
                                           <Font size="16.0" />
                                        </font>
                                     </Label>
-                                    <HBox />
-                                    <JFXTextField focusColor="BLACK" labelFloat="true" maxWidth="432.0" minWidth="91.0" prefHeight="43.0" prefWidth="324.0" promptText="Nome do Plano de Saúde" unFocusColor="#4059a9" />
-                                    <JFXTextField focusColor="BLACK" labelFloat="true" maxWidth="432.0" minWidth="77.0" prefHeight="43.0" prefWidth="77.0" promptText="Número de pessoas cobertas pelo Plano de saúde" unFocusColor="#4059a9" />
+                                    <JFXTextField fx:id="nomePlanoSaude" focusColor="BLACK" labelFloat="true" maxWidth="432.0" minWidth="91.0" prefHeight="43.0" prefWidth="324.0" promptText="Nome do Plano de Saúde" unFocusColor="#4059a9" />
+                                    <JFXTextField fx:id="numPessoaPlano" focusColor="BLACK" labelFloat="true" maxWidth="432.0" minWidth="77.0" prefHeight="43.0" prefWidth="77.0" promptText="Número de pessoas cobertas pelo Plano de saúde" unFocusColor="#4059a9" />
+                                    <JFXTextArea />
                                  </children>
                                  <VBox.margin>
                                     <Insets top="-40.0" />
@@ -392,15 +398,26 @@
                                                 <Font size="16.0" />
                                              </font>
                                           </Label>
-                                          <HBox />
-                                          <ComboBox prefHeight="41.0" prefWidth="253.0">
+                                          <HBox>
+                                             <children>
+                                                <CheckComboBox fx:id="boxCk_casoDoencProcura" prefHeight="41.0" prefWidth="232.0">
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                </CheckComboBox>
+                                                <JFXTextField fx:id="outros_casoDoenca" focusColor="BLACK" labelFloat="true" maxWidth="432.0" minWidth="91.0" prefHeight="43.0" prefWidth="170.0" promptText="Outros" unFocusColor="#4059a9">
+                                                   <HBox.margin>
+                                                      <Insets top="5.0" />
+                                                   </HBox.margin>
+                                                </JFXTextField>
+                                             </children>
                                              <VBox.margin>
                                                 <Insets top="-20.0" />
                                              </VBox.margin>
-                                          </ComboBox>
-                                          <Label text="Meios de comunicação que mais utiliza">
+                                          </HBox>
+                                          <Label prefWidth="277.0" text="Meios de comunicação mais utilizados">
                                              <font>
-                                                <Font size="16.0" />
+                                                <Font size="14.0" />
                                              </font>
                                           </Label>
                                           <HBox>
@@ -408,8 +425,12 @@
                                                 <Insets top="-20.0" />
                                              </VBox.margin>
                                              <children>
-                                                <ComboBox prefHeight="41.0" prefWidth="253.0" />
-                                                <JFXTextField focusColor="BLACK" labelFloat="true" maxWidth="432.0" minWidth="91.0" prefHeight="43.0" prefWidth="247.0" promptText="Outros" unFocusColor="#4059a9">
+                                                <CheckComboBox fx:id="boxCk_meiosComunicacao" prefHeight="41.0" prefWidth="312.0">
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                </CheckComboBox>
+                                                <JFXTextField fx:id="outros_meioComunicacao" focusColor="BLACK" labelFloat="true" maxWidth="432.0" minWidth="91.0" prefHeight="43.0" prefWidth="247.0" promptText="Outros" unFocusColor="#4059a9">
                                                    <HBox.margin>
                                                       <Insets top="5.0" />
                                                    </HBox.margin>
@@ -418,7 +439,7 @@
                                           </HBox>
                                        </children>
                                     </VBox>
-                                    <VBox fillWidth="false" prefHeight="197.0" prefWidth="400.0" spacing="20.0">
+                                    <VBox fillWidth="false" prefHeight="284.0" prefWidth="400.0" spacing="20.0">
                                        <children>
                                           <Label text="Participa de grupos comunitários">
                                              <font>
@@ -430,15 +451,18 @@
                                                 <Insets top="-20.0" />
                                              </VBox.margin>
                                              <children>
-                                                <ComboBox prefHeight="41.0" prefWidth="253.0" />
-                                                <JFXTextField focusColor="BLACK" labelFloat="true" maxWidth="432.0" minWidth="91.0" prefHeight="43.0" prefWidth="247.0" promptText="Outros" unFocusColor="#4059a9">
+                                                <CheckComboBox fx:id="boxCk_gruposComunitario" prefHeight="41.0" prefWidth="263.0">
+                                                   <HBox.margin>
+                                                      <Insets left="5.0" />
+                                                   </HBox.margin>
+                                                </CheckComboBox>
+                                                <JFXTextField fx:id="outros_gruposComunitario" focusColor="BLACK" labelFloat="true" maxWidth="432.0" minWidth="91.0" prefHeight="43.0" prefWidth="247.0" promptText="Outros" unFocusColor="#4059a9">
                                                    <HBox.margin>
                                                       <Insets top="5.0" />
                                                    </HBox.margin>
                                                 </JFXTextField>
                                              </children>
                                           </HBox>
-                                          <HBox />
                                           <Label text="Meios de transporte que mais utiliza">
                                              <font>
                                                 <Font size="16.0" />
@@ -446,8 +470,12 @@
                                           </Label>
                                           <HBox>
                                              <children>
-                                                <ComboBox prefHeight="41.0" prefWidth="253.0" />
-                                                <JFXTextField focusColor="BLACK" labelFloat="true" maxWidth="432.0" minWidth="91.0" prefHeight="43.0" prefWidth="247.0" promptText="Outros" unFocusColor="#4059a9">
+                                                <CheckComboBox fx:id="boxCk_meiosTransporte" prefHeight="41.0" prefWidth="266.0">
+                                                   <HBox.margin>
+                                                      <Insets left="5.0" />
+                                                   </HBox.margin>
+                                                </CheckComboBox>
+                                                <JFXTextField fx:id="outros_meiosTransporte" focusColor="BLACK" labelFloat="true" maxWidth="432.0" minWidth="91.0" prefHeight="43.0" prefWidth="247.0" promptText="Outros" unFocusColor="#4059a9">
                                                    <HBox.margin>
                                                       <Insets top="5.0" />
                                                    </HBox.margin>
@@ -461,7 +489,8 @@
                                     </VBox>
                                  </children>
                               </HBox>
-                              <Button mnemonicParsing="false" text="Próximo" />
+                              <JFXTextArea fx:id="observacoes" labelFloat="true" maxWidth="1180.0" minWidth="897.0" prefHeight="70.0" prefWidth="897.0" promptText="Observações" style="-fx-text-fill: black;" />
+                              <Button mnemonicParsing="false" onAction="#finalizarCadastro" text="Finalizar" />
                            </children>
                         </VBox>
                      </children>

@@ -9,21 +9,29 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.ResourceBundle;
+
+import org.controlsfx.control.CheckComboBox;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTabPane;
+import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 
 import br.com.siab.model.CondicaoDoenca;
+import br.com.siab.model.CondicaoDoencaID;
 import br.com.siab.model.FichaA;
 import br.com.siab.model.FichaA_ID;
+import br.com.siab.model.InfoFamilia;
 import br.com.siab.model.Membro;
 import br.com.siab.model.Municipio;
+import br.com.siab.model.PlanoSaude;
+import br.com.siab.model.SituacaoFamilia;
 import br.com.siab.sql.ConnectionClass;
 import br.com.siab.util.AutoCompleteComboBoxListener;
 import br.com.siab.util.Util;
@@ -175,6 +183,73 @@ public class CadastroFichaAController implements Initializable{
     private TableColumn<Membro, String> col_ocupacao;
 
     @FXML
+    private Tab tab_situacao;
+
+    @FXML
+    private ComboBox<String> box_tipoCasa;
+
+    @FXML
+    private JFXTextField outro_tipoCasa;
+
+    @FXML
+    private JFXTextField numeComodos;
+
+    @FXML
+    private JFXCheckBox energiaEletrica;
+
+    @FXML
+    private ComboBox<String> box_destinoLixo;
+
+    @FXML
+    private ComboBox<String> box_tratamentoAgua;
+
+    @FXML
+    private ComboBox<String> box_abastecimentoAgua;
+
+    @FXML
+    private ComboBox<String> box_destinoFezes;
+
+    private FichaA_ID fichaA_ID;
+
+    private boolean updateSituacao;
+
+    @FXML
+    private Tab tab_outros;
+
+    @FXML
+    private JFXTextField nomePlanoSaude;
+
+    @FXML
+    private JFXTextField numPessoaPlano;
+
+    @FXML
+    private CheckComboBox<String> boxCk_casoDoencProcura;
+
+    @FXML
+    private JFXTextField outros_casoDoenca;
+
+    @FXML
+    private CheckComboBox<String> boxCk_meiosComunicacao;
+
+    @FXML
+    private JFXTextField outros_meioComunicacao;
+
+    @FXML
+    private CheckComboBox<String> boxCk_gruposComunitario;
+
+    @FXML
+    private JFXTextField outros_gruposComunitario;
+
+    @FXML
+    private CheckComboBox<String> boxCk_meiosTransporte;
+
+    @FXML
+    private JFXTextField outros_meiosTransporte;
+
+    @FXML
+    private JFXTextArea observacoes;
+
+    @FXML
     void cadastrarMunicipio(ActionEvent event) {
     	if(!box_municipio2.getSelectionModel().isEmpty() && !codMunicipio1.getText().isEmpty()){
     		Municipio m = new Municipio();
@@ -208,6 +283,7 @@ public class CadastroFichaAController implements Initializable{
 				!box_municipio.getSelectionModel().isEmpty() && !segmento.getText().isEmpty() && !area.getText().isEmpty() && !microarea.getSelectionModel().isEmpty() &&
 					!familia.getText().isEmpty() && dt_cadastro.getValue() != null){
 			limparSelecao(event);
+			limparInfos();
 			FichaA fA = new FichaA();
     		fA.setBairro(bairro.getText());
     		fA.setCep(Integer.valueOf(cep.getText()));
@@ -220,7 +296,6 @@ public class CadastroFichaAController implements Initializable{
     		fA.setId(new FichaA_ID(Integer.valueOf(codMunicipio.getText()), Integer.valueOf(area.getText()),
     				Integer.valueOf(microarea.getSelectionModel().getSelectedItem()), Integer.valueOf(familia.getText())));
 			if(UtilDao.daoFichaA.getFichaA(fA.getId()) == null){
-
 	    		UtilDao.daoFichaA.addFichaA(fA);
 	    		System.out.println("Ficha A cadastrada!");
 
@@ -228,9 +303,36 @@ public class CadastroFichaAController implements Initializable{
 			}
 			else{
 				table_membros.setItems(UtilDao.daoFichaA.getMembros(fA.getId()));
+
+				SituacaoFamilia st = UtilDao.daoFichaA.getSituacaoFamilia(fA.getId());
+				if(st != null){
+	    			box_abastecimentoAgua.getSelectionModel().select(st.getAbastecimento_agua());
+	    			numeComodos.setText(String.valueOf(st.getNum_comodos()));
+	    			if(st.getEnergiaEletrica() == 1){
+	    				energiaEletrica.setSelected(true);
+	    			}
+	    			box_destinoLixo.getSelectionModel().select(st.getDestino_lixo());
+	    			box_tratamentoAgua.getSelectionModel().select(st.getTratamento_agua());
+	    			box_destinoFezes.getSelectionModel().select(st.getDestino_fezesUrina());
+
+	    			for (String tipoCasa : box_tipoCasa.getItems()) {
+	    				outro_tipoCasa.clear();
+						if(tipoCasa.equals(st.getTipoCasa())){
+							box_tipoCasa.getSelectionModel().select(st.getTipoCasa());
+							break;
+						}
+						else{
+							outro_tipoCasa.setText(st.getTipoCasa());
+						}
+					}
+
+	    			updateSituacao = true;
+	    		}
 			}
 			tab_cadastroMembros.setDisable(false);
 			tabPane.getSelectionModel().select(tab_cadastroMembros);
+
+			fichaA_ID = fA.getId();
 
 		}
 		else{
@@ -260,7 +362,9 @@ public class CadastroFichaAController implements Initializable{
     @FXML
     void checkArea(ActionEvent event) throws SQLException {
     	if(!area.getText().isEmpty() && !segmento.getText().isEmpty() && !codMunicipio.getText().isEmpty()){
+    		fichaA_ID = null;
     		newFicha = false;
+    		updateSituacao = false;
     		Connection conn = ConnectionClass.createConnection();
     		PreparedStatement stmt = conn.prepareStatement("SELECT microarea FROM siab.fichaa WHERE siab.fichaa.municipio = ? AND area = ? GROUP by microarea;");
     		stmt.setInt(1, Integer.valueOf(codMunicipio.getText()));
@@ -378,8 +482,27 @@ public class CadastroFichaAController implements Initializable{
 
     	box_sexo.getItems().addAll("Masculino", "Feminino", "Outro");
 
-    	box_doencasCondicoes.getItems().addAll("Alcoolismo", "Chagas", "Deficiência", "Diabestes", "Epilepsia", "Hanseníase",
+    	box_doencasCondicoes.getItems().addAll("Alcoolismo", "Chagas", "Deficiência", "Diabetes", "Epilepsia", "Hanseníase",
     				"Hipertensão arterial", "Malária", "Tuberculose", "Gestação", "Outras");
+
+    	box_tipoCasa.getItems().addAll("Tijolo/Adobe", "Taipa revestida", "Taipa não revestida", "Madeira", "Material aproveitado");
+
+    	box_destinoLixo.getItems().addAll("Coletado", "Queimado/Enterrado", "Céu aberto");
+
+    	box_tratamentoAgua.getItems().addAll("Filtração", "Fervura", "Cloração", "Sem tratamento");
+
+    	box_abastecimentoAgua.getItems().addAll("Rede geral", "Poço ou nascente", "Outros");
+
+    	box_destinoFezes.getItems().addAll("Sistema de esgoto (rede geral)", "Fossa", "Céu aberto");
+
+
+    	boxCk_casoDoencProcura.getItems().addAll("Hospital", "Unidade de Saúde", "Benzedeira", "Farmácia");
+
+    	boxCk_meiosComunicacao.getItems().addAll("Rádio", "Televisão");
+
+    	boxCk_gruposComunitario.getItems().addAll("Cooperativa", "Grupo religioso", "Associações");
+
+    	boxCk_meiosTransporte.getItems().addAll("Ônibus", "Caminhão", "Carro", "Carroça");
 
 		new AutoCompleteComboBoxListener<>(box_uf);
 		new AutoCompleteComboBoxListener<>(box_uf2);
@@ -455,6 +578,7 @@ public class CadastroFichaAController implements Initializable{
 
     @FXML
     void cadastrarMembro(ActionEvent event) {
+    	initTable();
     	Membro selected = table_membros.getSelectionModel().getSelectedItem();
     	if(selected != null){
     		selected.setArea(Integer.valueOf(area.getText()));
@@ -462,7 +586,8 @@ public class CadastroFichaAController implements Initializable{
     		selected.setCodFamilia(Integer.valueOf(familia.getText()));
     		selected.setCodMunicipio(Integer.valueOf(codMunicipio.getText()));
     		selected.setNome(membroNome.getText());
-    		if(membroDt.getValue() != null){
+    		selected.setDt_nascimento(null);
+    		if(membroDt.getValue() != null && membroDt.getEditor().getText().length() > 1){
     			Date dt = Date.valueOf(membroDt.getValue());
     			selected.setDt_nascimento(dt);
     		}
@@ -479,20 +604,20 @@ public class CadastroFichaAController implements Initializable{
     		selected.setOcupacao(membroOcupacao.getText());
     		selected.setSexo(box_sexo.getSelectionModel().getSelectedItem());
 
+    		UtilDao.daoFichaA.removeAllCondicao(selected.getCodPessoa());
+
+
+    		for (String d : listDoencasCondicoes.getItems()) {
+    			CondicaoDoenca cd = new CondicaoDoenca();
+    			cd.setId(new CondicaoDoencaID(selected.getCodPessoa(), d));
+				UtilDao.daoFichaA.addCondicao(cd);
+			}
 
     		UtilDao.daoFichaA.updateMembro(selected);
 
     		table_membros.getItems().remove(selected);
     		table_membros.getItems().add(selected);
 
-    		UtilDao.daoFichaA.removeAllCondicao(selected.getCodPessoa());
-
-    		for (String d : listDoencasCondicoes.getItems()) {
-    			CondicaoDoenca cd = new CondicaoDoenca();
-    			cd.setCodPessoa(selected.getCodFamilia());
-    			cd.setCondicaoOuDoenca(d);
-				UtilDao.daoFichaA.updateCondicao(cd);
-			}
     	}
 
     	else if(!(membroNome.getText().isEmpty() && membroIdade.getText().isEmpty() && box_sexo.getSelectionModel().isEmpty())){
@@ -519,20 +644,18 @@ public class CadastroFichaAController implements Initializable{
     		m.setOcupacao(membroOcupacao.getText());
     		m.setSexo(box_sexo.getSelectionModel().getSelectedItem());
 
-
     		UtilDao.daoFichaA.addMembro(m);
     		System.out.println("Membro cadastrado");
     		table_membros.getItems().add(m);
 
     		for (String d : listDoencasCondicoes.getItems()) {
     			CondicaoDoenca cd = new CondicaoDoenca();
-    			cd.setCodPessoa(m.getCodFamilia());
-    			cd.setCondicaoOuDoenca(d);
-				UtilDao.daoFichaA.addCondicao(cd);
+    			cd.setId(new CondicaoDoencaID(m.getCodPessoa(), d));
+				UtilDao.daoFichaA.addCondicao(cd);;
 			}
 
-
     	}
+
     }
 
     @FXML
@@ -540,15 +663,29 @@ public class CadastroFichaAController implements Initializable{
     	table_membros.getSelectionModel().clearSelection();
     	membroNome.clear();membroIdade.clear();membroDt.setValue(null);
     	membroOcupacao.clear();listDoencasCondicoes.getItems().clear();
-    	box_sexo.getSelectionModel().clearSelection();
+    	box_sexo.getSelectionModel().clearSelection();btn_cadastrarMembro.setText("Cadastrar membro");
+
+
+    }
+
+    void limparInfos(){
+    	box_tipoCasa.getSelectionModel().clearSelection();outro_tipoCasa.clear();numeComodos.clear();
+    	energiaEletrica.setSelected(false);box_destinoLixo.getSelectionModel().clearSelection();
+    	box_tratamentoAgua.getSelectionModel().clearSelection();box_abastecimentoAgua.getSelectionModel().clearSelection();
+    	box_destinoFezes.getSelectionModel().clearSelection();nomePlanoSaude.clear();numPessoaPlano.clear();
+    	boxCk_casoDoencProcura.getCheckModel().clearChecks();outros_casoDoenca.clear();
+    	boxCk_meiosComunicacao.getCheckModel().clearChecks();outros_meioComunicacao.clear();
+    	boxCk_gruposComunitario.getCheckModel().clearChecks();outros_gruposComunitario.clear();
+    	boxCk_meiosTransporte.getCheckModel().clearChecks();outros_meiosTransporte.clear();
     }
 
     @FXML
     void checkGroup(ActionEvent event){
     	if(alfabetizado.isSelected()){
     		frequentaEscola.setSelected(false);
-    	}else{
-    		frequentaEscola.setSelected(true);
+    	}
+    	if(frequentaEscola.isSelected()){
+    		alfabetizado.setSelected(false);
     	}
     }
 
@@ -583,6 +720,8 @@ public class CadastroFichaAController implements Initializable{
 
     	table_membros.getSelectionModel().selectedItemProperty().addListener((observable, oldSelection, newSelection) -> {
     		if(newSelection != null){
+    			btn_cadastrarMembro.setText("Atualizar membro");
+    			listDoencasCondicoes.getItems().clear();
     			membroNome.setText(newSelection.getNome());
     			membroIdade.setText(String.valueOf(newSelection.getIdade()));
     			membroOcupacao.setText(newSelection.getOcupacao());
@@ -619,10 +758,9 @@ public class CadastroFichaAController implements Initializable{
     		    	}
     	    	}
 
-    			listDoencasCondicoes.getItems().clear();
     			ObservableList<CondicaoDoenca> ob = UtilDao.daoFichaA.getDoencasOuCondicoes(newSelection.getCodPessoa());
     			for (int i = 0; i < ob.size(); i++) {
-    				listDoencasCondicoes.getItems().add(ob.get(i).getCondicaoOuDoenca());
+    				listDoencasCondicoes.getItems().add(ob.get(i).getId().getCondicaoOuDoenca());
 
 				}
 
@@ -633,6 +771,242 @@ public class CadastroFichaAController implements Initializable{
 
     }
 
+
+    @FXML
+    void proximo2(ActionEvent event) {
+    	if(table_membros.getItems().isEmpty()){
+			return;
+		}
+
+    	tab_situacao.setDisable(false);
+    	tabPane.getSelectionModel().select(tab_situacao);
+    }
+
+    ////////////////////////////////////////////////////// Tab situacaoMoradia /////////////////////////////////////////////////
+
+    @FXML
+    void proximo3(ActionEvent event) {
+    	if(!(numeComodos.getText().isEmpty() && box_destinoLixo.getSelectionModel().isEmpty() && box_tratamentoAgua.getSelectionModel().isEmpty() &&
+    			box_abastecimentoAgua.getSelectionModel().isEmpty() && box_destinoFezes.getSelectionModel().isEmpty()) && !updateSituacao){
+
+    		if(box_tipoCasa.getSelectionModel().isEmpty()){
+    			if(outro_tipoCasa.getText().isEmpty())
+    				return;
+    		}
+
+    		SituacaoFamilia st = new SituacaoFamilia();
+    		st.setId(fichaA_ID);
+    		st.setAbastecimento_agua(box_abastecimentoAgua.getSelectionModel().getSelectedItem());
+    		if(!box_tipoCasa.getSelectionModel().isEmpty()){
+    			st.setTipoCasa(box_tipoCasa.getSelectionModel().getSelectedItem());
+    		}else{
+    			st.setTipoCasa(outro_tipoCasa.getText());
+    		}
+
+    		st.setNum_comodos(Integer.valueOf(numeComodos.getText()));
+    		if(energiaEletrica.isSelected()){
+    			st.setEnergiaEletrica(1);
+    		}else{
+    			st.setEnergiaEletrica(0);
+    		}
+
+    		st.setDestino_lixo(box_destinoLixo.getSelectionModel().getSelectedItem());
+    		st.setTratamento_agua(box_tratamentoAgua.getSelectionModel().getSelectedItem());
+    		st.setDestino_fezesUrina(box_destinoFezes.getSelectionModel().getSelectedItem());
+
+    		UtilDao.daoFichaA.addSituacao(st);
+
+    		System.out.println("Situacao cadastrada!");
+
+    		tab_outros.setDisable(false);
+    		tabPane.getSelectionModel().select(tab_outros);
+
+    	}
+    	else if(!(numeComodos.getText().isEmpty() && box_destinoLixo.getSelectionModel().isEmpty() && box_tratamentoAgua.getSelectionModel().isEmpty() &&
+    			box_abastecimentoAgua.getSelectionModel().isEmpty() && box_destinoFezes.getSelectionModel().isEmpty()) && updateSituacao){
+
+    		SituacaoFamilia st = new SituacaoFamilia();
+    		st.setId(fichaA_ID);
+    		st.setAbastecimento_agua(box_abastecimentoAgua.getSelectionModel().getSelectedItem());
+    		if(!box_tipoCasa.getSelectionModel().isEmpty()){
+    			st.setTipoCasa(box_tipoCasa.getSelectionModel().getSelectedItem());
+    		}else{
+    			st.setTipoCasa(outro_tipoCasa.getText());
+    		}
+
+    		st.setNum_comodos(Integer.valueOf(numeComodos.getText()));
+    		if(energiaEletrica.isSelected()){
+    			st.setEnergiaEletrica(1);
+    		}else{
+    			st.setEnergiaEletrica(0);
+    		}
+
+    		st.setDestino_lixo(box_destinoLixo.getSelectionModel().getSelectedItem());
+    		st.setTratamento_agua(box_tratamentoAgua.getSelectionModel().getSelectedItem());
+    		st.setDestino_fezesUrina(box_destinoFezes.getSelectionModel().getSelectedItem());
+
+    		UtilDao.daoFichaA.updateSituacao(st);
+
+    		System.out.println("Situacao atualizada!");
+
+    		tab_outros.setDisable(false);
+    		tabPane.getSelectionModel().select(tab_outros);
+
+    		InfoFamilia check = UtilDao.daoFichaA.getInfoFamilia(fichaA_ID);
+    		if(check != null){
+    			observacoes.setText(check.getObservacao());
+    			for (String i : check.getCasoDoenca()) {
+    				boxCk_casoDoencProcura.getCheckModel().check(i);
+				}
+
+    			for (String i : check.getMeiosComunicacao()) {
+    				boxCk_meiosComunicacao.getCheckModel().check(i);
+				}
+
+    			for (String i : check.getGruposComunitarios()) {
+    				boxCk_gruposComunitario.getCheckModel().check(i);
+				}
+
+    			for (String i : check.getMeiosTransporte()) {
+    				boxCk_meiosTransporte.getCheckModel().check(i);
+				}
+
+    		}
+    	}
+    }
+
+    @FXML
+    void clearTipoCasa(KeyEvent event){
+    	box_tipoCasa.getSelectionModel().clearSelection();
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////Tab Outras informacoes //////////////////////////////////////////////////////
+
+    @FXML
+    void finalizarCadastro(ActionEvent event) throws SQLException {
+    	Connection con = ConnectionClass.createConnection();
+    	PreparedStatement stmt = null;
+
+    	if(!nomePlanoSaude.getText().isEmpty()){
+    		if(!numPessoaPlano.getText().isEmpty()){
+    			PlanoSaude pl = new PlanoSaude();
+    			pl.setId(fichaA_ID);
+    			pl.setNomePlano(nomePlanoSaude.getText());
+    			pl.setNumeroPessoa(Integer.valueOf(numPessoaPlano.getText()));
+
+    			UtilDao.daoFichaA.addPlano(pl);
+    		}
+    	}
+
+
+
+    	InfoFamilia inf = new InfoFamilia();
+    	inf.setArea(fichaA_ID.getArea());
+    	inf.setMicroarea(fichaA_ID.getMicroarea());
+    	inf.setMunicipio(fichaA_ID.getMunicipio());
+    	inf.setCodFamilia(fichaA_ID.getCodFamilia());
+    	inf.setObservacao(observacoes.getText());
+
+
+    	ArrayList<String> casoDoenca = new ArrayList<>(boxCk_casoDoencProcura.getCheckModel().getCheckedItems());
+    	if(!outros_casoDoenca.getText().isEmpty())casoDoenca.add(outros_casoDoenca.getText());
+
+    	ArrayList<String> meiosComun = new ArrayList<>(boxCk_meiosComunicacao.getCheckModel().getCheckedItems());
+		if(!outros_meioComunicacao.getText().isEmpty())meiosComun.add(outros_meioComunicacao.getText());
+
+		ArrayList<String> gruposComuni = new ArrayList<>(boxCk_gruposComunitario.getCheckModel().getCheckedItems());
+		if(!outros_gruposComunitario.getText().isEmpty())gruposComuni.add(outros_gruposComunitario.getText());
+
+		ArrayList<String> meiosTransporte = new ArrayList<>(boxCk_meiosTransporte.getCheckModel().getCheckedItems());
+		if(!outros_meiosTransporte.getText().isEmpty())meiosTransporte.add(outros_meiosTransporte.getText());
+
+    	InfoFamilia check = UtilDao.daoFichaA.getInfoFamilia(fichaA_ID);
+    	if(check.getMunicipio() == 0){
+    		int cod = UtilDao.daoFichaA.addInfoFamilia(inf);
+    		con = ConnectionClass.createConnection();
+
+    		for (String string : casoDoenca) {
+    			stmt = con.prepareStatement("INSERT INTO siab.infoCasoDoenca VALUES(?, ?);");
+    			stmt.setInt(1, cod);stmt.setString(2, string);
+    			stmt.execute();
+    		}
+
+    		for (String string : meiosComun) {
+    			stmt = con.prepareStatement("INSERT INTO siab.InfoMeiosComunicacao VALUES(?, ?);");
+    			stmt.setInt(1, cod);stmt.setString(2, string);
+    			stmt.execute();
+    		}
+
+    		for (String string : gruposComuni) {
+    			stmt = con.prepareStatement("INSERT INTO siab.infoGruposComunitarios VALUES(?, ?);");
+    			stmt.setInt(1, cod);stmt.setString(2, string);
+    			stmt.execute();
+    		}
+
+    		for (String string : meiosTransporte) {
+    			stmt = con.prepareStatement("INSERT INTO siab.InfoMeiosTransporte VALUES(?, ?);");
+    			stmt.setInt(1, cod);stmt.setString(2, string);
+    			stmt.execute();
+    		}
+
+    	}
+    	else{
+    		check.setArea(fichaA_ID.getArea());
+        	check.setMicroarea(fichaA_ID.getMicroarea());
+        	check.setMunicipio(fichaA_ID.getMunicipio());
+        	check.setCodFamilia(fichaA_ID.getCodFamilia());
+        	check.setObservacao(observacoes.getText());
+
+    		UtilDao.daoFichaA.updateInfoFamilia(check);
+
+    		con = ConnectionClass.createConnection();
+    		stmt = con.prepareStatement("DELETE FROM siab.infoCasoDoenca WHERE codInformacao = ?;");
+    		stmt.setInt(1, check.getCodInformacao());
+    		stmt.execute();
+
+    		stmt = con.prepareStatement("DELETE FROM siab.InfoMeiosComunicacao WHERE codInformacao = ?;");
+    		stmt.setInt(1, check.getCodInformacao());
+    		stmt.execute();
+
+    		stmt = con.prepareStatement("DELETE FROM siab.infoGruposComunitarios WHERE codInformacao = ?;");
+    		stmt.setInt(1, check.getCodInformacao());
+    		stmt.execute();
+
+    		stmt = con.prepareStatement("DELETE FROM siab.InfoMeiosTransporte WHERE codInformacao = ?;");
+    		stmt.setInt(1, check.getCodInformacao());
+    		stmt.execute();
+
+    		for (String string : casoDoenca) {
+    			stmt = con.prepareStatement("INSERT INTO siab.infoCasoDoenca VALUES(?, ?);");
+    			stmt.setInt(1, check.getCodInformacao());stmt.setString(2, string);
+    			stmt.execute();
+    		}
+
+    		for (String string : meiosComun) {
+    			stmt = con.prepareStatement("INSERT INTO siab.InfoMeiosComunicacao VALUES(?, ?);");
+    			stmt.setInt(1, check.getCodInformacao());stmt.setString(2, string);
+    			stmt.execute();
+    		}
+
+    		for (String string : gruposComuni) {
+    			stmt = con.prepareStatement("INSERT INTO siab.infoGruposComunitarios VALUES(?, ?);");
+    			stmt.setInt(1, check.getCodInformacao());stmt.setString(2, string);
+    			stmt.execute();
+    		}
+
+    		for (String string : meiosTransporte) {
+    			stmt = con.prepareStatement("INSERT INTO siab.InfoMeiosTransporte VALUES(?, ?);");
+    			stmt.setInt(1, check.getCodInformacao());stmt.setString(2, string);
+    			stmt.execute();
+    		}
+    	}
+
+    	Util.Alert("Cadastro finalizado!");
+
+		stmt.close();
+		con.close();
+
+    }
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -700,6 +1074,24 @@ public class CadastroFichaAController implements Initializable{
 			}
 			else{
 				membroIdade.setText(old_value);
+			}
+		});
+
+		numeComodos.textProperty().addListener((observable, old_value, new_value) -> {
+			if(new_value.matches("\\d+") || new_value.equals("")){
+				numeComodos.setText(new_value);
+			}
+			else{
+				numeComodos.setText(old_value);
+			}
+		});
+
+		numPessoaPlano.textProperty().addListener((observable, old_value, new_value) -> {
+			if(new_value.matches("\\d+") || new_value.equals("")){
+				numPessoaPlano.setText(new_value);
+			}
+			else{
+				numPessoaPlano.setText(old_value);
 			}
 		});
 
