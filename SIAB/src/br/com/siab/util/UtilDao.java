@@ -1,9 +1,11 @@
 package br.com.siab.util;
 
+import br.com.siab.dao.DaoFichaA;
+import br.com.siab.dao.DaoMunicipio;
+
 public class UtilDao {
 
-	//Aqui inicializa as classes Dao como atributos para ter facil acesso a elas
-	//Exemplo
-	//public static finao DaoMunicipios daoMunicipio = new DaoMunicipio();
+	public static final DaoMunicipio daoMunicipio = new DaoMunicipio();
+	public static final DaoFichaA daoFichaA = new DaoFichaA();
 
 }
