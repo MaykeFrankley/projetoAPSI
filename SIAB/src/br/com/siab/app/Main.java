@@ -5,8 +5,13 @@ import java.util.TimeZone;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import com.sun.javafx.application.LauncherImpl;
+
+import br.com.siab.app.Main;
+import br.com.siab.app.SplashScreenLoader;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.application.Preloader;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
@@ -21,6 +26,8 @@ public class Main extends Application{
 
 	public static Stage stage;
 	public static EntityManagerFactory factory;
+
+	private static final int COUNT_LIMIT = 10;
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -55,12 +62,24 @@ public class Main extends Application{
 			}
 		});
 
-		factory = Persistence.createEntityManagerFactory("SIAB");
+
 
 	}
 
+	@Override
+	public void init() throws Exception {
+	
+		factory = Persistence.createEntityManagerFactory("SIAB");
+
+
+		for (int i = 0; i < COUNT_LIMIT; i++) {
+			double progress = (double) i/10;
+			LauncherImpl.notifyPreloader(this, new Preloader.ProgressNotification(progress));
+		}
+	}
+
 	public static void main(String[] args) {
-		launch(args);
+		LauncherImpl.launchApplication(Main.class, SplashScreenLoader.class, args);
 	}
 
 }

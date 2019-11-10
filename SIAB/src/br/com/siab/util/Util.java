@@ -8,6 +8,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
 
+import br.com.siab.controller.MainTelaController;
 import br.com.siab.util.AutoCompleteComboBoxListener;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
@@ -41,7 +42,8 @@ public class Util {
 		}else{
 			root.translateYProperty().set(scene.getHeight());
 		}
-
+		
+		root.setMouseTransparent(true);
 		contentPane.getChildren().add(root);
 		Timeline timel = new Timeline();
 
@@ -59,8 +61,12 @@ public class Util {
 			if(contentPane.getChildren().size() > 1){
 				contentPane.getChildren().remove(0);
 			}
+			root.setMouseTransparent(false);
+			MainTelaController.dr.close();
 		});
 		timel.play();
+
+
 
 	}
 

@@ -2,7 +2,6 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="Libs"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="lib" path="Libs/controlsfx-8.40.15.jar"/>
 	<classpathentry kind="lib" path="Libs/fontawesomefx-8.9.jar"/>
 	<classpathentry kind="lib" path="Libs/org.eclipse.fx.ide.css.jfx8_2.4.0.201605112122.jar"/>
@@ -27,5 +26,6 @@
 	<classpathentry kind="lib" path="Libs/log4j-1.2.11.jar"/>
 	<classpathentry kind="lib" path="Libs/mysql-connector-java-8.0.16.jar"/>
 	<classpathentry kind="lib" path="Libs/xstream-1.4.10.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.8.0_201"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -39,6 +39,8 @@ public class MainTelaController implements Initializable{
     @FXML
     private JFXHamburger hamburger;
 
+    public static JFXDrawer dr;
+
     @FXML
 	void close_app(MouseEvent event) {
 		JFXButton yes = new JFXButton("Sair");
@@ -70,6 +72,7 @@ public class MainTelaController implements Initializable{
 			drawerController.setMainTela(this);
 
 			drawer.setSidePane(pane);
+			drawer.open();
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
@@ -118,6 +121,8 @@ public class MainTelaController implements Initializable{
 		initDrawer();
 		initializeMenu();
 		enableHamburger();
+
+		dr = drawer;
 
 	}
 
