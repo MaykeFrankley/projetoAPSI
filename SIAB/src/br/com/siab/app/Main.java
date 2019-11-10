@@ -22,6 +22,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 
+@SuppressWarnings("restriction")
 public class Main extends Application{
 
 	public static Stage stage;
@@ -68,7 +69,7 @@ public class Main extends Application{
 
 	@Override
 	public void init() throws Exception {
-	
+
 		factory = Persistence.createEntityManagerFactory("SIAB");
 
 
