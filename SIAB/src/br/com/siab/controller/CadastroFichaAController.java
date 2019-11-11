@@ -373,18 +373,19 @@ public class CadastroFichaAController implements Initializable{
     		if(rs.next()){
     			rs.previous();
     			microarea.getItems().clear();
-				while(rs.next()){
-					if(rs.getInt(1) < 10)
-						microarea.getItems().add("0"+String.valueOf(rs.getInt(1)));
+    			int i = 1;
+				while(i < 100){
+					if(i < 10)
+						microarea.getItems().add("0"+String.valueOf(i));
 					else
-						microarea.getItems().add(String.valueOf(rs.getInt(1)));
+						microarea.getItems().add(String.valueOf(i));
+					i++;
 				}
 
 				microarea.requestFocus();
 				microarea.show();
     		}
     		else{
-
     			JFXButton yes = new JFXButton("Cadastrar");
     			yes.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent even1) ->{
     				FichaA fA = new FichaA();
@@ -397,7 +398,14 @@ public class CadastroFichaAController implements Initializable{
     	    		fA.setNumero(Integer.valueOf(numEndereco.getText()));
     	    		fA.setSegmento(Integer.valueOf(segmento.getText()));
     	    		fA.setId(new FichaA_ID(Integer.valueOf(codMunicipio.getText()), Integer.valueOf(area.getText()), 1, 1));
-    	    		microarea.getItems().setAll("01");
+    	    		int i = 1;
+    				while(i < 100){
+    					if(i < 10)
+    						microarea.getItems().add("0"+String.valueOf(i));
+    					else
+    						microarea.getItems().add(String.valueOf(i));
+    					i++;
+    				}
     	    		microarea.show();
     	    		familia.setText("1");
 
@@ -1030,6 +1038,10 @@ public class CadastroFichaAController implements Initializable{
 			else{
 				area.setText(old_value);
 			}
+
+			if(area.getText().length() > 3){
+				area.setText(old_value);
+			}
 		});
 
 		numEndereco.textProperty().addListener((observable, old_value, new_value) -> {
@@ -1057,6 +1069,9 @@ public class CadastroFichaAController implements Initializable{
 			else{
 				segmento.setText(old_value);
 			}
+			if(segmento.getText().length() > 2){
+				segmento.setText(old_value);
+			}
 		});
 
 		familia.textProperty().addListener((observable, old_value, new_value) -> {
@@ -1064,6 +1079,9 @@ public class CadastroFichaAController implements Initializable{
 				familia.setText(new_value);
 			}
 			else{
+				familia.setText(old_value);
+			}
+			if(familia.getText().length() > 3){
 				familia.setText(old_value);
 			}
 		});
@@ -1094,6 +1112,8 @@ public class CadastroFichaAController implements Initializable{
 				numPessoaPlano.setText(old_value);
 			}
 		});
+
+
 
 	}
 
