@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: white;" stylesheets="@../css/lighttheme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.siab.controller.FichaB_HAController">
+   <children>
+      <JFXTabPane fx:id="tabPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <tabs>
+            <Tab closable="false" text="Dados de localização">
+               <content>
+                  <StackPane>
+                     <children>
+                        <AnchorPane fx:id="localizacaoPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <VBox alignment="TOP_CENTER" fillWidth="false" layoutX="74.0" layoutY="5.0" prefHeight="665.0" prefWidth="1280.0" spacing="15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <padding>
+                                    <Insets left="40.0" top="40.0" />
+                                 </padding>
+                                 <children>
+                                    <HBox fx:id="box_enderecoFamilia" onMouseExited="#checkEndereco" style="-fx-border-color: gray;">
+                                       <children>
+                                          <VBox alignment="CENTER_LEFT" fillWidth="false" prefHeight="147.0" prefWidth="443.0" spacing="25.0">
+                                             <children>
+                                                <JFXTextField fx:id="endereco" focusColor="BLACK" labelFloat="true" maxWidth="432.0" minWidth="91.0" prefHeight="43.0" prefWidth="410.0" promptText="Endereço" unFocusColor="#4059a9" />
+                                                <JFXTextField fx:id="numEndereco" focusColor="BLACK" labelFloat="true" maxWidth="432.0" minWidth="0.0" prefHeight="43.0" prefWidth="149.0" promptText="Número" unFocusColor="#4059a9" />
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER_LEFT" fillWidth="false" prefHeight="147.0" prefWidth="672.0" spacing="25.0">
+                                             <children>
+                                                <JFXTextField fx:id="bairro" focusColor="BLACK" labelFloat="true" maxWidth="432.0" minWidth="91.0" prefHeight="43.0" prefWidth="410.0" promptText="Bairro" unFocusColor="#4059a9" />
+                                                <JFXTextField fx:id="cep" focusColor="BLACK" labelFloat="true" maxWidth="432.0" minWidth="0.0" prefHeight="43.0" prefWidth="146.0" promptText="CEP" unFocusColor="#4059a9" />
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                    <HBox fx:id="box_dadosMunicipio" disable="true" fillHeight="false" prefHeight="305.0" prefWidth="1119.0" style="-fx-border-color: gray;">
+                                       <children>
+                                          <VBox alignment="CENTER_LEFT" fillWidth="false" prefHeight="306.0" prefWidth="448.0" spacing="25.0">
+                                             <children>
+                                                <JFXTextField fx:id="codMunicipio" editable="false" focusColor="BLACK" labelFloat="true" maxWidth="432.0" minWidth="91.0" prefHeight="43.0" prefWidth="155.0" promptText="codMunicipio" unFocusColor="#4059a9" />
+                                                <ComboBox fx:id="box_uf" onAction="#populateCidades" prefHeight="41.0" prefWidth="187.0" promptText="UF">
+                                                   <VBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </VBox.margin>
+                                                </ComboBox>
+                                                <ComboBox fx:id="box_municipio" onAction="#checkMunicipio" prefHeight="41.0" prefWidth="187.0" promptText="Município">
+                                                   <VBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </VBox.margin>
+                                                </ComboBox>
+                                                <JFXTextField fx:id="segmento" focusColor="BLACK" labelFloat="true" maxWidth="432.0" minWidth="91.0" prefHeight="43.0" prefWidth="106.0" promptText="Segmento" unFocusColor="#4059a9" />
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER_LEFT" fillWidth="false" prefHeight="261.0" prefWidth="317.0" spacing="25.0">
+                                             <children>
+                                                <HBox alignment="CENTER_LEFT">
+                                                   <children>
+                                                      <JFXTextField fx:id="area" focusColor="BLACK" labelFloat="true" maxWidth="432.0" minWidth="91.0" prefHeight="43.0" prefWidth="106.0" promptText="Área" unFocusColor="#4059a9" />
+                                                      <Button mnemonicParsing="false" onAction="#checkArea" prefHeight="29.0" prefWidth="23.0" style="-fx-font-size: 8px; -fx-border-color: transparent;">
+                                                         <graphic>
+                                                            <FontAwesomeIconView glyphName="SEARCH" size="20" style="-fx-fill: green;" />
+                                                         </graphic>
+                                                      </Button>
+                                                   </children>
+                                                </HBox>
+                                                <VBox>
+                                                   <VBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </VBox.margin>
+                                                   <children>
+                                                      <Label text="Micro área">
+                                                         <font>
+                                                            <Font size="16.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <ComboBox fx:id="microarea" onAction="#getCodFamilia" prefHeight="42.0" prefWidth="131.0" />
+                                                   </children>
+                                                </VBox>
+                                                <JFXTextField fx:id="familia" focusColor="BLACK" labelFloat="true" maxWidth="432.0" minWidth="0.0" prefHeight="43.0" prefWidth="102.0" promptText="Família" unFocusColor="#4059a9" />
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER_LEFT" prefHeight="79.0" prefWidth="236.0" />
+                                       </children>
+                                    </HBox>
+                                    <HBox spacing="40.0">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <children>
+                                          <Button fx:id="btn_proximo" mnemonicParsing="false" onAction="#proximo" text="Próximo" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                        <DialogPane fx:id="dialogPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="319.0" prefWidth="483.0" visible="false">
+                           <header>
+                              <Label alignment="CENTER" prefHeight="61.0" prefWidth="483.0" text="Cadastro de município" textFill="#ffff8d">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                           </header>
+                           <content>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <VBox alignment="TOP_CENTER" fillWidth="false" layoutX="54.0" layoutY="6.0" prefHeight="153.0" prefWidth="357.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <JFXTextField fx:id="codMunicipio1" focusColor="BLACK" labelFloat="true" maxWidth="432.0" minWidth="91.0" prefHeight="43.0" prefWidth="209.0" promptText="código do município" unFocusColor="#4059a9" />
+                                          <ComboBox fx:id="box_uf2" onAction="#populateCidades1" prefHeight="41.0" prefWidth="176.0" promptText="UF">
+                                             <VBox.margin>
+                                                <Insets left="-10.0" />
+                                             </VBox.margin>
+                                          </ComboBox>
+                                          <ComboBox fx:id="box_municipio2" prefHeight="41.0" prefWidth="188.0" promptText="Município">
+                                             <VBox.margin>
+                                                <Insets />
+                                             </VBox.margin>
+                                          </ComboBox>
+                                       </children>
+                                    </VBox>
+                                    <JFXButton layoutX="98.0" layoutY="174.0" onAction="#cadastrarMunicipio" text="Confirmar" />
+                                    <JFXButton layoutX="275.0" layoutY="174.0" onAction="#closeDialog" text="Cancelar" />
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </DialogPane>
+                     </children>
+                  </StackPane>
+               </content>
+            </Tab>
+            <Tab fx:id="tab_cadastroMembros" closable="false" disable="true" text="Dados do acompanhamento">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <VBox alignment="TOP_CENTER" fillWidth="false" layoutX="74.0" layoutY="5.0" prefHeight="665.0" prefWidth="1280.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <padding>
+                              <Insets left="40.0" top="40.0" />
+                           </padding>
+                           <children>
+                              <HBox fillHeight="false" onMouseExited="#checkMembroBox" prefHeight="265.0" prefWidth="1038.0" spacing="20.0" style="-fx-border-color: gray;">
+                                 <children>
+                                    <VBox fillWidth="false" prefHeight="214.0" prefWidth="552.0" spacing="20.0">
+                                       <children>
+                                          <JFXTextField fx:id="membroNome" focusColor="BLACK" labelFloat="true" maxWidth="544.0" minWidth="91.0" prefHeight="43.0" prefWidth="544.0" promptText="Nome" unFocusColor="#4059a9" />
+                                          <JFXComboBox fx:id="fumante" prefHeight="41.0" prefWidth="204.0" promptText="Fumante">
+                                             <VBox.margin>
+                                                <Insets left="18.0" />
+                                             </VBox.margin>
+                                          </JFXComboBox>
+                                       </children>
+                                       <opaqueInsets>
+                                          <Insets left="5.0" />
+                                       </opaqueInsets>
+                                    </VBox>
+                                    <VBox fillWidth="false" prefHeight="214.0" prefWidth="318.0" spacing="20.0">
+                                       <children>
+                                          <JFXTextField fx:id="membroIdade" focusColor="BLACK" labelFloat="true" maxWidth="432.0" minWidth="91.0" onKeyReleased="#setIdadeMembro" prefHeight="43.0" prefWidth="158.0" promptText="Idade" unFocusColor="#4059a9" />
+                                          <ComboBox fx:id="box_sexo" prefHeight="41.0" prefWidth="246.0" promptText="Sexo">
+                                             <VBox.margin>
+                                                <Insets left="8.0" top="-5.0" />
+                                             </VBox.margin>
+                                          </ComboBox>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="doencasPanel" disable="true" fillHeight="false" prefHeight="182.0" prefWidth="1038.0" spacing="20.0" style="-fx-border-color: gray;">
+                                 <children>
+                                    <VBox fillWidth="false" prefHeight="143.0" prefWidth="457.0" spacing="10.0">
+                                       <children>
+                                          <JFXComboBox fx:id="dieta" prefHeight="41.0" prefWidth="220.0" promptText="Faz dieta ?">
+                                             <VBox.margin>
+                                                <Insets left="28.0" />
+                                             </VBox.margin>
+                                          </JFXComboBox>
+                                          <JFXComboBox fx:id="medicamento" prefHeight="41.0" prefWidth="220.0" promptText="Toma medicamento ? ">
+                                             <VBox.margin>
+                                                <Insets left="28.0" />
+                                             </VBox.margin>
+                                          </JFXComboBox>
+                                          <JFXComboBox fx:id="exercicio" prefHeight="41.0" prefWidth="220.0" promptText="Pratica exercicio ? ">
+                                             <VBox.margin>
+                                                <Insets left="28.0" />
+                                             </VBox.margin>
+                                          </JFXComboBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="CENTER" fillWidth="false" prefHeight="146.0" prefWidth="376.0">
+                                       <children>
+                                          <JFXTextField fx:id="pressao" promptText="Pressão arterial" />
+                                          <JFXDatePicker fx:id="dataConsulta" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <HBox fillHeight="false" prefHeight="239.0" prefWidth="1038.0">
+                                 <children>
+                                    <TableView fx:id="table_membros" editable="true" prefWidth="1040.0" tableMenuButtonVisible="true">
+                                      <columns>
+                                        <TableColumn fx:id="col_codFamiilia" prefWidth="94.0" text="ID Família" />
+                                          <TableColumn fx:id="col_mes" prefWidth="150.0" text="col_mes" />
+                                        <TableColumn fx:id="col_dieta" prefWidth="204.0" text="com_dieta" />
+                                          <TableColumn fx:id="col_medicamento" prefWidth="170.0" text="col_meicamento" />
+                                          <TableColumn fx:id="col_exercicio" prefWidth="130.0" text="col_exercicio" />
+                                          <TableColumn fx:id="col_pressao" prefWidth="136.0" text="col_pressão" />
+                                          <TableColumn fx:id="col_consulta" prefWidth="174.0" text="data_consulta" />
+                                      </columns>
+                                    </TableView>
+                                 </children>
+                              </HBox>
+                              <HBox fillHeight="false" spacing="40.0">
+                                 <children>
+                                    <Button fx:id="btn_visita" mnemonicParsing="false" onAction="#cadastrarVisita" text="Cadastrar visita" />
+                                    <Button mnemonicParsing="false" onAction="#proximo2" text="Próximo" />
+                                    <Button mnemonicParsing="false" onAction="#limparSelecao" text="Limpar seleção" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab fx:id="tab_outros" closable="false" disable="true" text="Outras informações">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <VBox alignment="CENTER" fillWidth="false" layoutX="74.0" layoutY="5.0" prefHeight="665.0" prefWidth="1280.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <padding>
+                              <Insets left="40.0" top="40.0" />
+                           </padding>
+                           <children>
+                              <VBox fillWidth="false" prefHeight="571.0" prefWidth="1199.0" spacing="20.0" style="-fx-border-color: gray;">
+                                 <children>
+                                    <JFXTextArea fx:id="observacoes" labelFloat="true" maxWidth="1200.0" minWidth="897.0" prefHeight="571.0" prefWidth="1200.0" promptText="Observações" style="-fx-text-fill: black;">
+                                       <font>
+                                          <Font size="21.0" />
+                                       </font>
+                                    </JFXTextArea>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="-40.0" />
+                                 </VBox.margin>
+                              </VBox>
+                              <Button mnemonicParsing="false" onAction="#finalizarCadastro" text="Finalizar" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+         </tabs>
+      </JFXTabPane>
+   </children>
+</AnchorPane>
