@@ -15,7 +15,7 @@
    <content>
       <AnchorPane>
          <children>
-            <VBox fx:id="box_cadastrar" alignment="CENTER" prefHeight="88.0" prefWidth="245.0" visible="false">
+            <VBox fx:id="box_cadastrar" alignment="CENTER" prefHeight="88.0" prefWidth="245.0">
                <children>
                   <JFXButton alignment="TOP_LEFT" onAction="#cadastrar_usuario" prefHeight="31.0" prefWidth="197.0" style="-fx-font-size: 15px;" styleClass="options-btn" text="Funcionários/Usuários">
                      <graphic>

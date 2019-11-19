@@ -160,7 +160,7 @@
                            <children>
                               <HBox fillHeight="false" onMouseExited="#checkMembroBox" prefHeight="265.0" prefWidth="1038.0" spacing="20.0" style="-fx-border-color: gray;">
                                  <children>
-                                    <VBox fillWidth="false" prefHeight="214.0" prefWidth="552.0" spacing="20.0">
+                                    <VBox alignment="CENTER_LEFT" fillWidth="false" prefHeight="214.0" prefWidth="552.0" spacing="20.0">
                                        <children>
                                           <JFXTextField fx:id="membroNome" focusColor="BLACK" labelFloat="true" maxWidth="544.0" minWidth="91.0" prefHeight="43.0" prefWidth="544.0" promptText="Nome" unFocusColor="#4059a9" />
                                           <JFXComboBox fx:id="fumante" prefHeight="41.0" prefWidth="204.0" promptText="Fumante">
@@ -173,7 +173,7 @@
                                           <Insets left="5.0" />
                                        </opaqueInsets>
                                     </VBox>
-                                    <VBox fillWidth="false" prefHeight="214.0" prefWidth="318.0" spacing="20.0">
+                                    <VBox alignment="CENTER_LEFT" fillWidth="false" prefHeight="214.0" prefWidth="318.0" spacing="20.0">
                                        <children>
                                           <JFXTextField fx:id="membroIdade" focusColor="BLACK" labelFloat="true" maxWidth="432.0" minWidth="91.0" onKeyReleased="#setIdadeMembro" prefHeight="43.0" prefWidth="158.0" promptText="Idade" unFocusColor="#4059a9" />
                                           <ComboBox fx:id="box_sexo" prefHeight="41.0" prefWidth="246.0" promptText="Sexo">
