@@ -7,6 +7,11 @@ public class FichaB_HA {
 	
 	private Date dt_Cadastro;
 
+	private String nome;
+	private boolean fumante;
+	private int idade;
+	private String sexo;
+	
 	private FichaA fichaA;
 	private FichaA_ID fichaA_id;
 	
