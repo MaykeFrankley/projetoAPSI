@@ -1,5 +1,8 @@
 package br.com.siab.app;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.sql.Connection;
 import java.util.TimeZone;
 
 import javax.persistence.EntityManagerFactory;
@@ -7,6 +10,9 @@ import javax.persistence.Persistence;
 
 import com.sun.javafx.application.LauncherImpl;
 
+import br.com.siab.sql.CheckSQL;
+import br.com.siab.sql.ConnectionClass;
+import br.com.siab.util.ScriptRunner;
 import br.com.siab.app.Main;
 import br.com.siab.app.SplashScreenLoader;
 import javafx.application.Application;
@@ -70,8 +76,20 @@ public class Main extends Application{
 	@Override
 	public void init() throws Exception {
 
-		factory = Persistence.createEntityManagerFactory("SIAB");
+		CheckSQL check = new CheckSQL();
+		if(!check.checkTableExists("fichaA")){
+			Connection con = ConnectionClass.createConnection();
 
+			ScriptRunner runner = new ScriptRunner(con, false, false);
+
+			BufferedReader in = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/siabCreateScript.sql"), "UTF8"));
+			runner.runScript(in);
+
+			BufferedReader in2 = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/siab_municipios.sql"), "UTF8"));
+			runner.runScript(in2);
+		}
+
+		factory = Persistence.createEntityManagerFactory("SIAB");
 
 		for (int i = 0; i < COUNT_LIMIT; i++) {
 			double progress = (double) i/10;

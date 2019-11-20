@@ -2,6 +2,7 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="Libs"/>
+	<classpathentry kind="src" path="scripts"/>
 	<classpathentry kind="lib" path="Libs/controlsfx-8.40.15.jar"/>
 	<classpathentry kind="lib" path="Libs/fontawesomefx-8.9.jar"/>
 	<classpathentry kind="lib" path="Libs/org.eclipse.fx.ide.css.jfx8_2.4.0.201605112122.jar"/>
