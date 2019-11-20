@@ -491,7 +491,7 @@ public class CadastroFichaAController implements Initializable{
     	box_sexo.getItems().addAll("Masculino", "Feminino", "Outro");
 
     	box_doencasCondicoes.getItems().addAll("Alcoolismo", "Chagas", "Deficiência", "Diabetes", "Epilepsia", "Hanseníase",
-    				"Hipertensão arterial", "Malária", "Tuberculose", "Gestação", "Outras");
+    				"Hipertensão arterial", "Malária", "Tuberculose", "Gestação", "Fumante", "Outras");
 
     	box_tipoCasa.getItems().addAll("Tijolo/Adobe", "Taipa revestida", "Taipa não revestida", "Madeira", "Material aproveitado");
 
