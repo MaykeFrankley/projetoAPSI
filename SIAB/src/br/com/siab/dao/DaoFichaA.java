@@ -110,6 +110,13 @@ public class DaoFichaA {
 		}
 	}
 
+	public Membro getMembro(int cod){
+		createEM();
+		Membro m = entityMn.find(Membro.class, cod);
+		entityMn.close();
+		return m;
+	}
+
 	public void addCondicao(CondicaoDoenca cd){
 		try {
 			createEM();

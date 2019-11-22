@@ -53,6 +53,14 @@
                         <FontAwesomeIconView fx:id="icon_arrow" fill="WHITE" glyphName="CHEVRON_UP" size="25" />
                      </graphic>
                   </Button>
+                  <Button alignment="BASELINE_LEFT" defaultButton="true" focusTraversable="false" graphicTextGap="20.0" mnemonicParsing="false" onAction="#acompanhamento_HA" prefHeight="44.0" prefWidth="269.0" styleClass="options-btn" text="Acompanhamento HA" textFill="WHITE">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="BOOK" size="25" />
+                     </graphic>
+                  </Button>
                   <Button alignment="BASELINE_LEFT" defaultButton="true" focusTraversable="false" graphicTextGap="30.0" mnemonicParsing="false" onAction="#logout_handler" prefHeight="33.0" prefWidth="250.0" styleClass="options-btn" text="Logout" textFill="WHITE">
                      <font>
                         <Font name="Verdana" size="12.0" />

@@ -61,6 +61,12 @@ public class DrawerController {
     }
 
     @FXML
+    void acompanhamento_HA(ActionEvent event) throws IOException {
+    	Scene scene = (Scene) ((Node) event.getSource()).getScene();
+		Util.LoadWindow(getClass().getResource("/br/com/siab/view/FichaB-HA.fxml"), scene, "x");
+    }
+
+    @FXML
     void logout_handler(ActionEvent event) {
 
     }

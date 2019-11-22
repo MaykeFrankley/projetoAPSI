@@ -308,6 +308,92 @@
     -fx-base: #FFFFFF;
 }
 
+/*TreeTableView */
+
+.tree-table-view{
+    -fx-background-color: derive(#FFFFFF, 10%);
+    -fx-font-size: 18px;
+    -fx-border-color: derive(#2A2E37, -60%);
+}
+.tree-table-view:focused{
+    -fx-background-color: derive(#FFFFFF, 20%);
+}
+.tree-table-row-cell {
+    -fx-cell-size: 40px;
+}
+.tree-table-view .column-header-background{
+    -fx-background-color: #f0f0f0;
+}
+.tree-table-view .column-header-background .label{
+    -fx-background-color: transparent;
+    -fx-text-fill: #000000;
+}
+.tree-table-view .column-header {
+    -fx-background-color: transparent;
+}
+.tree-table-view .tree-table-cell{
+    -fx-text-fill: #000000;
+}
+.tree-table-row-cell:focused, .tree-table-cell:focused{
+    -fx-text-fill: #FFFFFF;
+}
+.tree-table-row-cell{
+    -fx-background-color: #f0f0f0;
+    -fx-border-color: transparent;
+    -fx-table-cell-border-color: transparent;
+}
+.tree-table-column{
+    -fx-alignment: CENTER;
+}
+.tree-table-row-cell:even{
+    -fx-background-color: #FFFFFF;
+}
+.tree-table-row-cell:selected {
+    -fx-background-color: #2A2E37;
+    -fx-text-fill: #FFFFFF;
+    -fx-background-insets: 0;
+}
+.tree-table-row-cell:selected .tree-table-cell{
+    -fx-text-fill: #FFFFFF;
+}
+.placeholder .label{
+    -fx-text-fill: #000000;
+}
+.tree-table-view > .virtual-flow > .scroll-bar:vertical,
+.tree-table-view > .virtual-flow > .scroll-bar:vertical > .track,
+.tree-table-view > .virtual-flow > .scroll-bar:vertical > .track-background,
+.tree-table-view > .virtual-flow > .scroll-bar:horizontal,
+.tree-table-view > .virtual-flow > .scroll-bar:horizontal > .track,
+.tree-table-view > .virtual-flow > .scroll-bar:horizontal > .track-background {
+    -fx-background-color: transparent;
+}
+.tree-table-view > .virtual-flow > .scroll-bar > .increment-button,
+.tree-table-view > .virtual-flow > .scroll-bar > .decrement-button {
+    -fx-text-fill: #000000;
+}
+
+.tree-table-view > .virtual-flow > .corner{
+	-fx-background-color: transparent;
+}
+.tree-table-view .scroll-bar:horizontal .thumb,
+.tree-table-view .scroll-bar:vertical .thumb{
+    -fx-background-color: #f0f0f0;
+    -fx-border-color: transparent;
+    -fx-background-radius: 5em;
+}
+.tree-table-view .filler{
+    -fx-fill: transparent;
+    -fx-background-color: transparent;
+}
+
+.tree-table-view > .column-header-background > .show-hide-columns-button {
+    -fx-background-color: #FFFFFF;
+}
+.tree-table-context
+{
+    -fx-base: #FFFFFF;
+}
+
 
 /*Checkbox*/
 

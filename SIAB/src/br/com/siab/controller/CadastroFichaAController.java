@@ -287,7 +287,6 @@ public class CadastroFichaAController implements Initializable{
 			FichaA fA = new FichaA();
     		fA.setBairro(bairro.getText());
     		fA.setCep(Integer.valueOf(cep.getText()));
-    		dt_cadastro.setValue(LocalDate.now());
     		Date dt = Date.valueOf(dt_cadastro.getValue());
     		fA.setDt_cadastro(dt);
     		fA.setEndereco(endereco.getText());
@@ -361,7 +360,7 @@ public class CadastroFichaAController implements Initializable{
 
     @FXML
     void checkArea(ActionEvent event) throws SQLException {
-    	if(!area.getText().isEmpty() && !segmento.getText().isEmpty() && !codMunicipio.getText().isEmpty()){
+    	if(!area.getText().isEmpty() && !segmento.getText().isEmpty() && !codMunicipio.getText().isEmpty() && dt_cadastro.getValue() != null){
     		fichaA_ID = null;
     		newFicha = false;
     		updateSituacao = false;
@@ -391,7 +390,6 @@ public class CadastroFichaAController implements Initializable{
     				FichaA fA = new FichaA();
     	    		fA.setBairro(bairro.getText());
     	    		fA.setCep(Integer.valueOf(cep.getText()));
-    	    		dt_cadastro.setValue(LocalDate.now());
     	    		Date dt = Date.valueOf(dt_cadastro.getValue());
     	    		fA.setDt_cadastro(dt);
     	    		fA.setEndereco(endereco.getText());
