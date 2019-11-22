@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TreeTableColumn?>
+<?import javafx.scene.control.TreeTableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: white;" stylesheets="@../css/lighttheme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.siab.controller.FichaB_HAController">
+	<children>
+		<JFXTabPane fx:id="tabPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+			<tabs>
+				<Tab closable="false" text="Hipertensos cadastrados">
+					<content>
+						<StackPane>
+							<children>
+								<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+									<children>
+										<VBox alignment="TOP_CENTER" fillWidth="false" layoutX="74.0" layoutY="5.0" prefHeight="665.0" prefWidth="1280.0" spacing="15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+											<padding>
+												<Insets left="40.0" top="40.0" />
+											</padding>
+											<children>
+												<HBox alignment="CENTER" fillHeight="false" prefHeight="100.0" prefWidth="1118.0" spacing="50.0" style="-fx-border-color: black;">
+													<children>
+														<JFXTextField fx:id="codMunicipio" editable="false" focusColor="BLACK" labelFloat="true" maxWidth="432.0" minWidth="91.0" prefHeight="43.0" prefWidth="155.0" promptText="codMunicipio" unFocusColor="#4059a9" />
+														<ComboBox fx:id="box_uf" onAction="#populateCidades" prefHeight="41.0" prefWidth="187.0" promptText="UF">
+															<HBox.margin>
+																<Insets bottom="10.0" />
+															</HBox.margin>
+														</ComboBox>
+														<ComboBox fx:id="box_municipio" onAction="#checkMunicipio" prefHeight="41.0" prefWidth="187.0" promptText="Município">
+															<HBox.margin>
+																<Insets bottom="10.0" />
+															</HBox.margin>
+														</ComboBox>
+                                          <HBox alignment="CENTER_LEFT">
+                                             <children>
+                                                <JFXTextField fx:id="area" focusColor="BLACK" labelFloat="true" maxWidth="432.0" minWidth="91.0" prefHeight="43.0" prefWidth="106.0" promptText="Área" unFocusColor="#4059a9" />
+                                                <Button mnemonicParsing="false" onAction="#getHipertensos" prefHeight="29.0" prefWidth="23.0" style="-fx-font-size: 8px; -fx-border-color: transparent;">
+                                                   <graphic>
+                                                      <FontAwesomeIconView glyphName="SEARCH" size="20" style="-fx-fill: green;" />
+                                                   </graphic>
+                                                </Button>
+                                             </children>
+                                          </HBox>
+													</children>
+												</HBox>
+                                    <JFXTextField fx:id="campo_pesquisa" labelFloat="true" maxWidth="451.0" minWidth="451.0" onKeyReleased="#searchMembro" prefHeight="43.0" prefWidth="451.0" promptText="Buscar">
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin>
+                                    </JFXTextField>
+												<HBox fx:id="box_dadosMunicipio" fillHeight="false" prefHeight="435.0" prefWidth="1119.0" style="-fx-border-color: gray;">
+													<children>
+														<TreeTableView fx:id="table_tree" prefHeight="466.0" prefWidth="1117.0">
+															<columns>
+																<TreeTableColumn fx:id="col_main" prefWidth="188.0" />
+                                                <TreeTableColumn fx:id="col_hipertenso" prefWidth="775.0" text="Hipertenso" />
+															</columns>
+														</TreeTableView>
+													</children>
+												</HBox>
+												<HBox spacing="40.0">
+													<VBox.margin>
+														<Insets />
+													</VBox.margin>
+													<children>
+														<Button fx:id="btn_proximo" mnemonicParsing="false" onAction="#proximo" text="Próximo" />
+													</children>
+												</HBox>
+											</children>
+										</VBox>
+									</children>
+								</AnchorPane>
+							</children>
+						</StackPane>
+					</content>
+				</Tab>
+            <Tab fx:id="tab_acomp" closable="false" disable="true" text="Acompanhamento">
+               <content>
+                  <StackPane>
+                     <children>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <VBox alignment="TOP_CENTER" fillWidth="false" prefHeight="665.0" prefWidth="1280.0" spacing="15.0" style="-fx-border-color: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <padding>
+                                    <Insets left="40.0" top="40.0" />
+                                 </padding>
+                                 <children>
+                                    <VBox style="-fx-border-color: black;">
+                                       <children>
+                                          <HBox alignment="CENTER" fillHeight="false" prefHeight="100.0" prefWidth="1118.0" spacing="50.0">
+                                             <children>
+                                                <JFXTextField fx:id="nome" editable="false" focusColor="BLACK" labelFloat="true" maxWidth="432.0" minWidth="91.0" prefHeight="43.0" prefWidth="227.0" promptText="Nome" unFocusColor="#4059a9" />
+                                                <JFXTextField fx:id="sexo" editable="false" focusColor="BLACK" labelFloat="true" maxWidth="432.0" minWidth="91.0" prefHeight="43.0" prefWidth="193.0" promptText="Sexo" unFocusColor="#4059a9" />
+                                                <JFXTextField fx:id="idade" editable="false" focusColor="BLACK" labelFloat="true" maxWidth="432.0" minWidth="70.0" prefHeight="43.0" prefWidth="70.0" promptText="Idade" unFocusColor="#4059a9" />
+                                                <JFXCheckBox fx:id="fumante" mouseTransparent="true" text="Fumante">
+                                                   <font>
+                                                      <Font size="16.0" />
+                                                   </font>
+                                                </JFXCheckBox>
+                                             </children>
+                                          </HBox>
+                                          <JFXTextField fx:id="endereco" editable="false" focusColor="BLACK" labelFloat="true" maxWidth="438.0" minWidth="91.0" prefHeight="43.0" prefWidth="717.0" promptText="Endereço" unFocusColor="#4059a9">
+                                             <VBox.margin>
+                                                <Insets left="190.0" />
+                                             </VBox.margin>
+                                          </JFXTextField>
+                                       </children>
+                                    </VBox>
+                                    <HBox fillHeight="false" prefHeight="326.0" prefWidth="1121.0" style="-fx-border-color: black;">
+                                       <children>
+                                          <VBox fillWidth="false" prefHeight="326.0" prefWidth="239.0" spacing="20.0">
+                                             <children>
+                                                <ComboBox fx:id="box_meses" onAction="#getAcompanhamento" prefHeight="41.0" prefWidth="190.0" promptText="Mês" />
+                                                <JFXCheckBox fx:id="fazDieta" text="Faz dieta">
+                                                   <font>
+                                                      <Font size="16.0" />
+                                                   </font>
+                                                </JFXCheckBox>
+                                                <JFXCheckBox fx:id="medicacao" text="Toma a medicação">
+                                                   <font>
+                                                      <Font size="16.0" />
+                                                   </font>
+                                                </JFXCheckBox>
+                                                <JFXCheckBox fx:id="exercicio" text="Faz exercícios físicos">
+                                                   <font>
+                                                      <Font size="16.0" />
+                                                   </font>
+                                                </JFXCheckBox>
+                                                <JFXTextField fx:id="pressao_arterial" focusColor="BLACK" labelFloat="true" maxWidth="454.0" minWidth="91.0" prefHeight="43.0" prefWidth="163.0" promptText="Pressão arterial" unFocusColor="#4059a9" />
+                                                <JFXTextField fx:id="dia_consulta" focusColor="BLACK" labelFloat="true" maxWidth="454.0" minWidth="81.0" prefHeight="43.0" prefWidth="81.0" promptText="Dia da última consulta" unFocusColor="#4059a9" />
+                                             </children>
+                                          </VBox>
+                                          <TableView fx:id="table_acompanhamentos" prefHeight="324.0" prefWidth="881.0">
+                                            <columns>
+                                              <TableColumn fx:id="col_mes" prefWidth="171.0" text="Mês" />
+                                              <TableColumn fx:id="col_dia" minWidth="0.0" prefWidth="68.0" text="Dia" />
+                                                <TableColumn fx:id="col_dieta" minWidth="0.0" prefWidth="123.0" text="Faz dieta" />
+                                                <TableColumn fx:id="col_medicamentos" minWidth="0.0" prefWidth="191.0" text="Toma medicamentos" />
+                                                <TableColumn fx:id="col_exercicio" minWidth="0.0" prefWidth="158.0" text="Exercícios físicos" />
+                                                <TableColumn fx:id="col_pressao" minWidth="0.0" prefWidth="164.0" text="Pressão Arterial" />
+                                            </columns>
+                                          </TableView>
+                                       </children>
+                                    </HBox>
+                                    <HBox spacing="40.0">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <children>
+                                          <Button mnemonicParsing="false" onAction="#salvar" text="Salvar" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </StackPane>
+               </content>
+            </Tab>
+			</tabs>
+		</JFXTabPane>
+	</children>
+</AnchorPane>

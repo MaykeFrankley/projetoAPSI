@@ -310,6 +310,10 @@
 
 /*TreeTableView */
 
+.tree-cell:search-match {
+    -fx-background: yellow ;
+}
+
 .tree-table-view{
     -fx-background-color: derive(#FFFFFF, 10%);
     -fx-font-size: 18px;

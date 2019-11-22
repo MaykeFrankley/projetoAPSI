@@ -27,6 +27,7 @@ import br.com.siab.model.CondicaoDoenca;
 import br.com.siab.model.CondicaoDoencaID;
 import br.com.siab.model.FichaA;
 import br.com.siab.model.FichaA_ID;
+import br.com.siab.model.FichaB;
 import br.com.siab.model.InfoFamilia;
 import br.com.siab.model.Membro;
 import br.com.siab.model.Municipio;
@@ -617,6 +618,20 @@ public class CadastroFichaAController implements Initializable{
     			CondicaoDoenca cd = new CondicaoDoenca();
     			cd.setId(new CondicaoDoencaID(selected.getCodPessoa(), d));
 				UtilDao.daoFichaA.addCondicao(cd);
+
+				if(cd.getId().getCondicaoOuDoenca().equals("Hipertensão arterial") || cd.getId().getCondicaoOuDoenca().equals("Gestação") ||
+						cd.getId().getCondicaoOuDoenca().equals("Diabetes")){
+					FichaB fichaB = UtilDao.daoFichaB.getFichaB(new FichaA_ID(selected.getCodMunicipio(), selected.getArea(), selected.getMicroarea(), selected.getCodFamilia()));
+					if(fichaB == null){
+						fichaB = new FichaB();
+						fichaB.setAnoCorrente(LocalDate.now().getYear());
+						fichaB.setNomeAgente("Agente junto");
+						fichaB.setId(new FichaA_ID(selected.getCodMunicipio(), selected.getArea(), selected.getMicroarea(), selected.getCodFamilia()));
+
+						UtilDao.daoFichaB.addFichaB(fichaB);
+
+					}
+				}
 			}
 
     		UtilDao.daoFichaA.updateMembro(selected);
@@ -658,6 +673,20 @@ public class CadastroFichaAController implements Initializable{
     			CondicaoDoenca cd = new CondicaoDoenca();
     			cd.setId(new CondicaoDoencaID(m.getCodPessoa(), d));
 				UtilDao.daoFichaA.addCondicao(cd);;
+
+				if(cd.getId().getCondicaoOuDoenca().equals("Hipertensão arterial") || cd.getId().getCondicaoOuDoenca().equals("Gestação") ||
+						cd.getId().getCondicaoOuDoenca().equals("Diabetes")){
+					FichaB fichaB = UtilDao.daoFichaB.getFichaB(new FichaA_ID(m.getCodMunicipio(), m.getArea(), m.getMicroarea(), m.getCodFamilia()));
+					if(fichaB == null){
+						fichaB = new FichaB();
+						fichaB.setAnoCorrente(LocalDate.now().getYear());
+						fichaB.setNomeAgente("Agente junto");
+						fichaB.setId(new FichaA_ID(m.getCodMunicipio(), m.getArea(), m.getMicroarea(), m.getCodFamilia()));
+
+						UtilDao.daoFichaB.addFichaB(fichaB);
+
+					}
+				}
 			}
 
     	}
